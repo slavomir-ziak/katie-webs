@@ -1,0 +1,40 @@
+#!/bin/bash
+.  _sql
+
+if [[ $# == 0 ]] 
+then
+echo "
+Displays TIMESTAMP for last audit record of current user
+Usage:  db-audit-trail-last <user>"
+exit 1
+fi
+
+where_user="(T.USERNAME = '$1' OR T.CLIENT_ID = '$1')"
+
+_sql_statement="
+	$sql_wide
+	$sql_porcelain
+	column MILS format 99999999999999
+	SET TAB OFF
+	SET COLSEP '	' 
+	
+	SELECT 
+		EXTRACT(DAY FROM (EXTENDED_TIMESTAMP - TO_TIMESTAMP_TZ('1970-01-01 GMT','YYYY-MM-DD TZR'))) 
+				* 86400000 
+				+ TO_NUMBER(TO_CHAR (SYS_EXTRACT_UTC (EXTENDED_TIMESTAMP), 'SSSSSFF3')) as MILS 
+		,EXTENDED_TIMESTAMP		
+		FROM (
+			SELECT NVL(MAX(EXTENDED_TIMESTAMP),SYSTIMESTAMP) as EXTENDED_TIMESTAMP
+			FROM DBA_AUDIT_TRAIL T
+			WHERE  $where_user
+		) 
+	;    
+"	
+
+echo "$_sql_statement" 1>&2
+echo "---------------------------------------------------------" 1>&2
+
+# go
+sql "$_sql_statement" | trim
+
+

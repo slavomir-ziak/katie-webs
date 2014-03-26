@@ -1,0 +1,15 @@
+#!/bin/bash
+.  _sql
+
+## List of database sessions (from v\$session)
+## db-sessions | grep U_
+
+sql "
+	$sql_wide
+	select AUDSID, SID, STATUS, USERNAME, PROGRAM, MACHINE from v\$session
+	where username is not null 
+	;
+"
+# TODO: PROXY USER NAME
+# OSUSER 	quite useless, good for client server not for us
+# PROCESS	quite useless (1234 value for all application servers)

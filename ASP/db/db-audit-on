@@ -1,0 +1,24 @@
+#!/bin/bash
+.  _sql
+
+if [[ -z $1 ]] 
+then
+	echo "Usage:db-audit-on <user-name>" 1>&2
+	exit 1
+fi
+
+# for some reason, both audits must be on AUDIT EXECUTE ANY PROCEDURE, and AUDIT EXECUTE PROCEDURE to log SQL and BIND params
+# did not work only with one of them turned
+_sql_cmd="
+
+	AUDIT INSERT ANY TABLE, UPDATE ANY TABLE, DELETE ANY TABLE, SELECT ANY TABLE BY $1 BY ACCESS;
+	AUDIT EXECUTE ANY PROCEDURE BY $1 BY ACCESS;
+	
+	AUDIT INSERT  TABLE, UPDATE  TABLE, DELETE  TABLE, SELECT  TABLE BY $1 BY ACCESS;
+	AUDIT EXECUTE  PROCEDURE BY $1 BY ACCESS;
+"
+echo "$_sql_cmd"  1>&2
+echo "---------------------------------------------------------" 1>&2
+
+sql "$_sql_cmd"
+

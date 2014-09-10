@@ -34,7 +34,9 @@
     <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
   	<script type="text/javascript" src="js/jquery.min.js"></script>
   	<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-
+    <script type="text/javascript" src="js/jquery.localisation.min.js"></script>
+    <script type="text/javascript" src="js/localisation.js"></script>
+    <script type="text/javascript">$.localise('js/localisation');</script>
 <!--/***********************************************
 * Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
 * This notice MUST stay intact for legal use
@@ -42,6 +44,7 @@
 ***********************************************/
 
 -->
+
 
 
 <script type="text/javascript">
@@ -67,9 +70,28 @@ ddsmoothmenu.init({
 </script>
   </head>
   <body>
+  <script type="text/javascript">
+ var userLang = navigator.language || navigator.userLanguage; 
+ // alert ("The language is: " + userLang);
+  userLang='sk';
+  $.localise('js/localisation', {loadBase:true, language: 'en-US'});
+  //alert(mainTitle);
+
+/* $.localise('js/localisation.js', 'en');
+alert(mainTitle);
+
+ $.localise('js/localisation.js', 'en-UE');
+alert(mainTitle);
+
+
+ $.localise('js/localisation.js');
+alert(mainTitle);
+*/
+
+ </script>
     <header>
   <div class="logo" style="position: fixed; top:0px; left: 7%; z-index:1000000">
-      <img src="images/templatemo_logo.jpg" alt="smoothy html5 template">
+      <img src="images/templatemo_logo.jpg" alt="smoothy html5 template" >
   </div>  
     <!-- start menu -->
     <div id="templatemo_home">
@@ -109,7 +131,7 @@ ddsmoothmenu.init({
             <div class="clear"></div>
             <h1>Katie shoes</h1>
             <div class="clear"></div>
-     		<p class="font-size17"><b> Nechajte Vaše topánky ožiť farbami - jedinečný namieru vytvorený dizajn na topánky podľa Vašich požiadaviek.</b></p>
+     		<p class="font-size17"><b> Nechajte Vaše topánky ožiť farbami - jedinečný na mieru vytvorený dizajn na topánky podľa Vašich požiadaviek.</b></p>
     	    
       </div>  
   </header>
@@ -175,7 +197,7 @@ ddsmoothmenu.init({
                        	   Kabelky</div>
   						<div class="col-xs-6 col-sm-6 col-md-3 hover-box" >
   							<div class="inner-hover-box">								
-  								<p>Dizaj ladiaci k topánkam podľa požiadaviek.</p>
+  								<p>Dizajn ladiaci k topánkam podľa požiadaviek.</p>
   							</div>
   						</div>
   					</div> 	
@@ -638,7 +660,7 @@ ddsmoothmenu.init({
       
               </div>
 
-             <a class="btn btn-large btn-primary" onclick="$('.katie-portfolio-item-hidden').show();" >Zobraziť viac</a> 
+             <a class="btn btn-large btn-primary" onclick="$('.katie-portfolio-item-hidden').show(); $(this).hide()" >Zobraziť viac</a> 
               </div>
 
     </div>
@@ -985,6 +1007,9 @@ $(window).scroll(function(){
 Smoothy Template 
 http://www.templatemo.com/preview/templatemo_396_smoothy 
 -->
+
+
+
 </body>
 </html>
 <!-- 

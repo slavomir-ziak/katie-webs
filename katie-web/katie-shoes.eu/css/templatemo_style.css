@@ -642,6 +642,11 @@ and (max-width : 480px) {
 	.logo {
 		display:none;
 	}
+	.lang-icon {
+		float: none;	
+		margin: 5px 0px 5px 5px;
+	}
+	
 	.socials ul {
 		float: none;
 		text-align: center;

@@ -74,6 +74,10 @@ img {
 .logo {
 	padding: 0 0 0 20px;
 	width: 12%;
+	position: fixed; 
+	top: 0px; l
+	left: 7%; 
+	z-index:1000000
 }
 .mainMenu {
 
@@ -573,6 +577,15 @@ ul.list_bullet li a:hover { color: #555 }
 ul.footer_gallery li { display: block; float: left; margin: 0 5px 5px 0 }
 ul.footer_gallery li img { }
 
+.lang-icon {
+	width: 20px; 
+	height: auto;
+	float: right;
+	top: 0;
+	right: 0;
+	margin: 10px 10px 0px 0px
+}
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-device-width : 320px) 
@@ -627,7 +640,7 @@ and (max-width : 480px) {
 		
 	}
 	.logo {
-		text-align: center;
+		display:none;
 	}
 	.socials ul {
 		float: none;

@@ -6,8 +6,9 @@
 <html>
   <head>
     <title>Katie shoes</title>
+    
     <meta name="keywords" content="" />
-	<meta name="description" content="" />
+	  <meta name="description" content="" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="p:domain_verify" content="fde010cd192cd42243e36e9c623550ee"/>
@@ -32,11 +33,8 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
-  	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
   	<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-    <script type="text/javascript" src="js/jquery.localisation.min.js"></script>
-    <script type="text/javascript" src="js/localisation.js"></script>
-    <script type="text/javascript">$.localise('js/localisation');</script>
 <!--/***********************************************
 * Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
 * This notice MUST stay intact for legal use
@@ -50,11 +48,11 @@
 <script type="text/javascript">
 
 ddsmoothmenu.init({
-	mainmenuid: "templatemo_flicker", //menu DIV id
-	orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
-	classname: 'ddsmoothmenu', //class added to menu's outer DIV
-	//customtheme: ["#1c5a80", "#18374a"],
-	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+  mainmenuid: "templatemo_flicker", //menu DIV id
+  orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+  classname: 'ddsmoothmenu', //class added to menu's outer DIV
+  //customtheme: ["#1c5a80", "#18374a"],
+  contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
 })
 
 </script>
@@ -68,55 +66,78 @@ ddsmoothmenu.init({
   ga('send', 'pageview');
 
 </script>
-  </head>
-  <body>
-  <script type="text/javascript">
- var userLang = navigator.language || navigator.userLanguage; 
- // alert ("The language is: " + userLang);
-  userLang='sk';
-  $.localise('js/localisation', {loadBase:true, language: 'en-US'});
-  //alert(mainTitle);
 
-/* $.localise('js/localisation.js', 'en');
-alert(mainTitle);
+  <script type="text/javascript" charset="utf-8">
+      
+      function translateTo(lang){
+          var toLocalise = $("[data-localize]");
+          if (console.log) console.log('localising ' + toLocalise.length + ' elements to ' + lang +' language.');
+          toLocalise.localize("localisation", { language: lang, pathPrefix: "/js"});
+      }
 
- $.localise('js/localisation.js', 'en-UE');
-alert(mainTitle);
+      $(function(){
+          
+          var userLang = $.defaultLanguage;
+
+          var langParam = new RegExp('[\?&amp;]lang=([^&amp;#]*)').exec(window.location.href);
+          
+          if (langParam != null && langParam.length > 0 && langParam[1] != null) {
+            userLang = langParam[1];
+          }
+
+          if (! ( userLang.match(/^sk/) || userLang.match(/^cs/) )) {
+            translateTo('en');
+          }
+
+          $('#lang-icon-english').click(function(){
+            translateTo('en');
+          });
+
+          $('#lang-icon-slovak').click(function(){
+            translateTo('sk');
+          });
+
+      });
+
+  </script>
 
 
- $.localise('js/localisation.js');
-alert(mainTitle);
-*/
+</head>
 
- </script>
-    <header>
-  <div class="logo" style="position: fixed; top:0px; left: 7%; z-index:1000000">
-      <img src="images/templatemo_logo.jpg" alt="smoothy html5 template" >
+<body>
+
+<header>
+  <div class="logo">
+      <img src="images/templatemo_logo.jpg" alt="smoothy html5 template" />
   </div>  
     <!-- start menu -->
     <div id="templatemo_home">
     	<div class="templatemo_top">
-      <div class="container templatemo_container">
-        <div class="row">
-          <div class="col-sm-3 col-md-3">
-           
-          </div>
-          <div class="col-sm-9 col-md-9 templatemo_col9">
-          	<div id="top-menu">
-            <nav class="mainMenu">
-              <ul class="nav">
-                <li><a class="menu" href="#templatemo_home">Katie shoes</a></li>
-                <li><a class="menu" href="#templatemo_about">Ponuka</a></li>
-                <li><a class="menu" href="#templatemo_portfolio">Portfólio</a></li>
-                <li><a class="menu" href="#templatemo_contact">Kontakty</a></li>
-              </ul>
-            </nav>
+        <img id="lang-icon-english" class="lang-icon" src="images/icons/gb.png" alt="language english" />
+        <img id="lang-icon-slovak" class="lang-icon" src="images/icons/svk.png" alt="language slovak" />
+        <div class="container templatemo_container">
+          <div class="row">
+            <div class="col-sm-3 col-md-3">
+             
+            </div>
+            <div class="col-sm-9 col-md-9 templatemo_col9">
+            	<div id="top-menu">
+              <nav class="mainMenu">
+                <ul class="nav">
+                  <li><a class="menu" href="#templatemo_home" >Katie shoes</a></li>
+                  <li><a class="menu" href="#templatemo_about" data-localize="menuponuka" >Ponuka</a></li>
+                  <li><a class="menu" href="#templatemo_portfolio" data-localize="menuportfolio" >Portfólio</a></li>
+                  <li><a class="menu" href="#templatemo_contact" data-localize="menukontakty">Kontakty</a></li>
+                </ul>
+              </nav>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
+
+
     <div class="clear"></div>
     <!-- end menu -->
 
@@ -131,7 +152,7 @@ alert(mainTitle);
             <div class="clear"></div>
             <h1>Katie shoes</h1>
             <div class="clear"></div>
-     		<p class="font-size17"><b> Nechajte Vaše topánky ožiť farbami - jedinečný na mieru vytvorený dizajn na topánky podľa Vašich požiadaviek.</b></p>
+     		<p class="font-size17"><b data-localize="mainmenu"> Nechajte Vaše topánky ožiť farbami - jedinečný na mieru vytvorený dizajn na topánky podľa Vašich požiadaviek.</b></p>
     	    
       </div>  
   </header>
@@ -146,10 +167,10 @@ alert(mainTitle);
                             <img src="images/icons/Untitled-1.png" >
                             </span>
                         	  </div>                          
-                       	   Svadobné lodičky</div>
+                       	   <span data-localize="iconheel">Svadobné lodičky</span></div>
   						<div class="col-xs-12 col-sm-6 col-md-3 hover-box" >
   							<div class="inner-hover-box">								
-  								<p>Lodičky na svadbu s menami ženícha a nevesty, dátumom svadby, či inými detailami podľa želania.</p>
+  								<p data-localize="iconheeltext">Lodičky na svadbu s menami ženícha a nevesty, dátumom svadby, či inými detailami podľa želania.</p>
   							</div>
   						</div>
   					</div> 	
@@ -162,10 +183,10 @@ alert(mainTitle);
                             <img src="images/icons/Untitled-2.png" >
                             </span>
                         	  </div>
-                       	   Svadobné balerínky</div>
+                       	   <span data-localize="iconbalerina">Svadobné balerínky</span></div>
   						<div class="col-xs-6 col-sm-6 col-md-3 hover-box" >
   							<div class="inner-hover-box">								
-  								<p>Balerínky na svadbu s menami ženícha a nevesty, dátumom svadby, či inými detailami podľa želania.</p>
+  								<p data-localize="iconbalerinatext">Balerínky na svadbu s menami ženícha a nevesty, dátumom svadby, či inými detailami podľa želania.</p>
   							</div>
   						</div>
   					</div> 	
@@ -178,10 +199,10 @@ alert(mainTitle);
                             <img src="images/icons/Untitled-3.png" >
                             </span>
                         	  </div>
-                       	   Topánky na voľný čas</div>
+                       	   <span data-localize="iconshoes">Topánky na voľný čas</span></div>
   						<div class="col-xs-6 col-sm-6 col-md-3 hover-box" >
   							<div class="inner-hover-box">								
-  								<p>Dizajn na topánky podľa požiadaviek, množstvo farieb, vzorov.</p>
+  								<p data-localize="iconshoestext">Dizajn na topánky podľa požiadaviek, množstvo farieb, vzorov.</p>
   							</div>
   						</div>
   					</div> 	
@@ -194,10 +215,10 @@ alert(mainTitle);
                             <img src="images/icons/Untitled-4.png" >
                             </span>
                         	  </div>
-                       	   Kabelky</div>
+                       	   <span data-localize="iconbag">Kabelky</span></div>
   						<div class="col-xs-6 col-sm-6 col-md-3 hover-box" >
   							<div class="inner-hover-box">								
-  								<p>Dizajn ladiaci k topánkam podľa požiadaviek.</p>
+  								<p data-localize="iconbagtext">Dizajn ladiaci k topánkam podľa požiadaviek.</p>
   							</div>
   						</div>
   					</div> 	
@@ -208,8 +229,8 @@ alert(mainTitle);
     <div class="clear"></div>
     <!--Our Portfolio Start-->
     <div class="templatemo_portfolio" id="templatemo_portfolio">
-        	<h2>Portfólio</h2>
-            <p>Inšpirujte sa namaľovanými topánkami, ktoré som doteraz realizovala.</p>
+        	<h2 data-localize="portfoliopictures">Portfólio</h2>
+            <p data-localize="portfoliopicturesText">Inšpirujte sa namaľovanými topánkami, ktoré som doteraz realizovala.</p>
            	
             <div class="container">
            	  <div class="col-xs-6 col-sm-6 col-md-3 templatemo_col12">              
@@ -219,7 +240,7 @@ alert(mainTitle);
 								<div class="overlay-p">
 									<a href="images/portfolio/1.jpg" data-rel="lightbox[portfolio]">
                                     	<ul>
-                                        	<li>Svadobné lodičky podľa oznamka</li>
+                                        	<li data-localize="picture1">Svadobné lodičky podľa oznamka</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -239,7 +260,7 @@ alert(mainTitle);
 								<div class="overlay-p">
 									<a href="images/portfolio/2.jpg" data-rel="lightbox[portfolio]">
                                     	<ul>
-                                        	<li>Biele čipkované lodičky</li>
+                                        	<li data-localize="picture2_5">Biele čipkované lodičky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -259,7 +280,7 @@ alert(mainTitle);
 								<div class="overlay-p">
 									<a href="images/portfolio/3.jpg" data-rel="lightbox[portfolio]">
                                     	<ul>
-                                        	<li>Biele čipkované lodičky</li>
+                                        	<li data-localize="picture2_5">Biele čipkované lodičky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -279,7 +300,7 @@ alert(mainTitle);
 								<div class="overlay-p">
 									<a href="images/portfolio/4.jpg" data-rel="lightbox[portfolio]">
                                     	<ul>
-                                        	<li>Biele čipkované lodičky</li>
+                                        	<li data-localize="picture2_5">Biele čipkované lodičky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -302,7 +323,7 @@ alert(mainTitle);
 								<div class="overlay-p">
 									<a href="images/portfolio/5.jpg" data-rel="lightbox[portfolio]">
                                     	<ul>
-                                        	<li>Biele čipkované lodičky</li>
+                                        	<li data-localize="picture2_5">Biele čipkované lodičky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -322,7 +343,7 @@ alert(mainTitle);
 								<div class="overlay-p">
 									<a href="images/portfolio/6.jpg" data-rel="lightbox[portfolio]">
                                     	<ul>
-                                        	<li>Luxury lodičky k popolnočným šatám</li>
+                                        	<li data-localize="picture6_9">Luxury lodičky k popolnočným šatám</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -342,7 +363,7 @@ alert(mainTitle);
 								<div class="overlay-p">
 									<a href="images/portfolio/7.jpg" data-rel="lightbox[portfolio]">
                                     	<ul>
-                                        	<li>Luxury lodičky k popolnočným šatám</li>
+                                        	<li data-localize="picture6_9">Luxury lodičky k popolnočným šatám</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -363,7 +384,7 @@ alert(mainTitle);
 								<div class="overlay-p">
 									<a href="images/portfolio/8.jpg" data-rel="lightbox[portfolio]">
                                     	<ul>
-                                        	<li>Luxury lodičky k popolnočným šatám</li>
+                                        	<li data-localize="picture6_9">Luxury lodičky k popolnočným šatám</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -384,7 +405,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/9.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Luxury lodičky k popolnočným šatám</li>
+                                          <li data-localize="picture6_9">Luxury lodičky k popolnočným šatám</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -404,7 +425,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/10.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Svadobné balerínky</li>
+                                          <li data-localize="picture10_12">Svadobné balerínky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -424,7 +445,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/11.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Svadobné balerínky</li>
+                                          <li data-localize="picture10_12">Svadobné balerínky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -444,7 +465,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/12.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Svadobné balerínky</li>
+                                          <li data-localize="picture10_12">Svadobné balerínky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -464,7 +485,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/13.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Elegantné gumáky</li>
+                                          <li data-localize="picture13">Elegantné gumáky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -484,7 +505,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/14.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Svadobné lodičky</li>
+                                          <li data-localize="picture14_16">Svadobné lodičky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -504,7 +525,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/15.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Svadobné lodičky</li>
+                                          <li data-localize="picture14_16">Svadobné lodičky>Svadobné lodičky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -524,7 +545,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/16.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Svadobné lodičky</li>
+                                          <li data-localize="picture14_16">Svadobné lodičky>Svadobné lodičky</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -544,7 +565,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/17.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Lodičky s henna dizajnom</li>
+                                          <li data-localize="picture17_19">Svadobné lodičky>Lodičky s henna dizajnom</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -564,7 +585,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/18.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Lodičky s henna dizajnom</li>
+                                          <li data-localize="picture17_19">Lodičky s henna dizajnom</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -584,7 +605,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/19.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Lodičky s henna dizajnom</li>
+                                          <li data-localize="picture17_19">Lodičky s henna dizajnom</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -604,7 +625,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/20.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Svadobné balerínky s hudobnou tematikou</li>
+                                          <li data-localize="picture20_22">Svadobné balerínky s hudobnou tematikou</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -624,7 +645,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/21.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Svadobné balerínky s hudobnou tematikou</li>
+                                          <li data-localize="picture20_22">Svadobné balerínky s hudobnou tematikou</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -644,7 +665,7 @@ alert(mainTitle);
                 <div class="overlay-p">
                   <a href="images/portfolio/22.jpg" data-rel="lightbox[portfolio]">
                                       <ul>
-                                          <li>Svadobné balerínky s hudobnou tematikou</li>
+                                          <li data-localize="picture20_22">Svadobné balerínky s hudobnou tematikou</li>
                                             <li class="fa fa-circle"></li>
                                             <li class="fa fa-circle fsmall"></li>
                                             <li class="fa fa-circle"></li>
@@ -660,7 +681,7 @@ alert(mainTitle);
       
               </div>
 
-             <a class="btn btn-large btn-primary" onclick="$('.katie-portfolio-item-hidden').show(); $(this).hide()" >Zobraziť viac</a> 
+             <a data-localize="showMore" class="btn btn-large btn-primary" onclick="$('.katie-portfolio-item-hidden').show(); $(this).hide()" >Zobraziť viac</a> 
               </div>
 
     </div>
@@ -669,7 +690,7 @@ alert(mainTitle);
     
     <div class="templatemo_lightgrey" id="templatemo_contact" >
     <!--Our Client Start-->
-    <div style="text-align: center" ><h2 class="kontakty" >Kontakty</h2></div>
+    <div style="text-align: center" ><h2 class="kontakty"  data-localize="barcontact" >Kontakty</h2></div>
 
     <div class="templatemo_reasonbg" >
         <div class="container">
@@ -677,20 +698,20 @@ alert(mainTitle);
         	<div class="col-xs-11 templatemo_col12 templatemo_clientwrapper">
 
             <div class="templatemo_clientimage">
-                <p class="templatemo_clientdes kontakty">Buďte s Katie shoes stále v kontakte aj prostredníctvom Facebook stránky.</p>
+                <p class="templatemo_clientdes kontakty" data-localize="iconFB" >Buďte s Katie shoes stále v kontakte aj prostredníctvom Facebook stránky.</p>
             	  <a target="_new" href="https://www.facebook.com/Katie.handpainted.shoes"> <img src="images/client/1.jpg" alt="client image 1" /></a>
                 <div class="clear"></div>
                 <div class="fa fa-circle mleft1"></div>
     			  </div>
             <div class="templatemo_clientimage">
-                <p class="templatemo_clientdes kontakty">Moja tvorba je pre Vás k nahliadnutiu aj na pinterest.com/kate_kosik.</p>
+                <p class="templatemo_clientdes kontakty" data-localize="iconpinterest" >Moja tvorba je pre Vás k nahliadnutiu aj na pinterest.com/kate_kosik.</p>
       				 <a target="_new" href="http://www.pinterest.com/kate_kosik/"> <img src="images/client/2.jpg" alt="client image 2" /> </a>
                 <div class="clear"></div>
                 <div class="fa fa-circle mleft2"></div>				 
     				</div>
 
              <div class="templatemo_clientimage">
-                <p class="templatemo_clientdes kontakty">V pripade akýchkoľvek otázok ma neváhajte kontaktovať prostredníctvom emailu kate_kosik@hotmail.com. </p>
+                <p class="templatemo_clientdes kontakty" data-localize="iconmail" >V pripade akýchkoľvek otázok ma neváhajte kontaktovať prostredníctvom emailu kate_kosik@hotmail.com. </p>
                <a href="mailto:kate_kosik@hotmail.com"> <img src="images/client/3.jpg" alt="client image 3" /></a>    
                 <div class="clear"></div>
                 <div class="fa fa-circle mleft3"></div>    
@@ -698,7 +719,7 @@ alert(mainTitle);
 
 
              <div class="templatemo_clientimage">
-                <p class="templatemo_clientdes kontakty">Pokiaľ Vás moja tvorba zaujala, pre objednávku navštívte sashe.sk/Katienka.</p>
+                <p class="templatemo_clientdes kontakty" data-localize="iconbasket" >Pokiaľ Vás moja tvorba zaujala, pre objednávku navštívte sashe.sk/Katienka.</p>
                 <a href="http://www.sashe.sk/Katienka" target="_new"><img src="images/client/4.jpg" alt="client image 4" /></a>
                 <div class="clear"></div>
                 <div class="fa fa-circle mleft4"></div>    
@@ -707,7 +728,7 @@ alert(mainTitle);
                
 
              <div class="templatemo_clientimage">
-                <p class="templatemo_clientdes kontakty">Kontaktovať ma môžete v pracovných dňoch aj prostredníctvom telefónu (+421 902 141 632).</p>
+                <p class="templatemo_clientdes kontakty" data-localize="iconphone" >Kontaktovať ma môžete v pracovných dňoch aj prostredníctvom telefónu (+421 902 141 632).</p>
                 <a href="tel:+421902141632" > <img src="images/client/5.jpg" alt="client image 5" />    </a>
                 <div class="clear"></div>
                 <div class="fa fa-circle mleft5"></div>    
@@ -729,22 +750,22 @@ alert(mainTitle);
     <div class="templatemo_footer">
     	<div class="container">
        	  <div class="col-xs-6 col-sm-6 col-md-3 templatemo_col12">
-            	<h2>O Katie shoes</h2>
-                <p>Namieru maľované dizajny na Vaše topánky a módne doplnky. Na svadby, či iné slávnostné príležitosti, alebo len tak.</p>
+            	<h2 data-localize="aboutkatieshoes" >O Katie shoes</h2>
+                <p data-localize="aboutkatieshoestext" >Namieru maľované dizajny na Vaše topánky a módne doplnky. Na svadby, či iné slávnostné príležitosti, alebo len tak.</p>
           </div>
             <div class="col-xs-6 col-sm-6 col-md-3 templatemo_col12">
-            	<h2>Kreslím na</h2>
+            	<h2 data-localize="paintingon" >Kreslím na</h2>
                 <ul>
-                  <li>lodičky, baleríny, čižmy</li>
-                  <li>kabelky</li>
-                  <li>z ekokože, kože, koženky</li>
+                  <li data-localize="paintingontext1" >lodičky, baleríny, čižmy</li>
+                  <li data-localize="paintingontext2" >kabelky</li>
+                  <li data-localize="paintingontext3" >z ekokože, kože, koženky</li>
                   
                 </ul>
                 <div class="clear"></div>
                 <div class="templatemo_morelink"><a href="#"></a></div>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-3 templatemo_col12">
-            	<h2>Portfólio</h2>
+            	<h2 data-localize="portfoliodownbar">Portfólio</h2>
 					<div id="templatemo_flicker" >
           <ul class="nobullet footer_gallery">
                 <li><a href="images/flicker/1.jpg" data-rel="lightbox[gallery]"><img src="images/flicker/1.jpg" alt="image 1" /></a></li>
@@ -759,8 +780,8 @@ alert(mainTitle);
             <br style="clear: left" />
         </div>
           </div>
-            <div class="col-xs-6 col-sm-6 col-md-3 templatemo_col12">
-            <h2>Kontakty</h2>
+            <div  class="col-xs-6 col-sm-6 col-md-3 templatemo_col12">
+            <h2 data-localize="Contacts">Kontakty</h2>
             	<span class="left col-xs-1 fa fa-map-marker"></span>
                 <a target="_new" href="https://www.google.sk/maps/place/Kadn%C3%A1rova+2513%2F21,+831+52+Bratislava/@48.1984704,17.14089,17z/data=!3m1!4b1!4m2!3m1!1s0x476c8e7d4ecaa1c5:0x7b45341037b8ac08?hl=en"><span class="right col-xs-11">Kadnárová 21, 83152 Bratislava</span></a>
                 <div class="clear height10"></div>
@@ -791,13 +812,14 @@ alert(mainTitle);
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
+    <!-- -->
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.cycle2.min.js"></script>
     <script src="js/jquery.cycle2.carousel.min.js"></script>
     <script src="js/jquery.nivo.slider.pack.js"></script>
     <script>$.fn.cycle.defaults.autoSelector = '.slideshow';</script>
-    <script type="text/javascript">
+   <script type="text/javascript">
       $(function(){
           $('.katie-portfolio-item-hidden').hide();
 
@@ -867,8 +889,8 @@ alert(mainTitle);
           });
       });
     </script>
-	<script src="js/jquery.singlePageNav.js"></script>
-	
+  <script src="js/jquery.singlePageNav.js"></script>
+  
     <script type="text/javascript">
     $(window).load(function() {
         $('#slider').nivoSlider({
@@ -952,11 +974,11 @@ alert(mainTitle);
      $('a.menu').click(function(){
     $('a.menu').removeClass("active");
     $(this).addClass("active");
-	});
+  });
       </script>
       
       <script> <!-- scroll to specific id when click on menu -->
-      	 // Cache selectors
+         // Cache selectors
 var lastId,
     topMenu = $("#top-menu"),
     topMenuHeight = topMenu.outerHeight()+15,
@@ -1007,9 +1029,9 @@ $(window).scroll(function(){
 Smoothy Template 
 http://www.templatemo.com/preview/templatemo_396_smoothy 
 -->
+       
 
-
-
+  <script src="js/jquery.localize.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
 <!-- 

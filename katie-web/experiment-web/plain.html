@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Transloadit Demo</title><!-- 
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
+
+</head>
+<body>
+	<script type="text/javascript" src="jquery-2.1.1.js" ></script>
+
+	<script type="text/javascript">
+	$(function() {
+		console.log('asdf');
+		$.ajax({
+			url:"demo_test.txt",
+			success:function(result){
+    			console.log(result);
+  			}
+  		});
+		
+	});
+	</script>
+
+</body>
+</html>

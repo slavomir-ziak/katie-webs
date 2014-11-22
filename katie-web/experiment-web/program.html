@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+    <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
+    <script type="text/javascript" src="transloadit_xhr.js" ></script>
+
+    <!-- https://developer.mozilla.org/en-US/docs/Web/Guide/Using_FormData_Objects 
+    https://github.com/tim-kos/transloadit_xhr/blob/master/example.js
+    -->
+    <script type="text/javascript">
+      
+      function upload(params, signature, file) {
+        
+        console.log(params);
+        console.log(signature);
+
+        var transloadit = new TransloaditXhr({
+          params: params,
+          signature: signature,
+
+          successCb: function(fileUrl) {
+            alert("Worked");
+          },
+
+          errorCb: function(error) {
+            alert(error);
+          }
+        });
+        console.log(transloadit);
+
+
+        transloadit.uploadFile(file);
+      }
+
+      var params = '{"auth":{"key":"9b1e93f05af411e481a62561be869cb8"},"template_id": "dc003a405af411e49922a70ffbc4fd6d"}';
+      var signature = '{"auth":{"key":"9b1e93f05af411e481a62561be869cb8"},"template_id":"dc003a405af411e49922a70ffbc4fd6d"}';
+      
+      var content = '<a id="a"><b id="b">hey!</b></a>'; // the body of the new blob...
+      var blob = new Blob([content], { type: "text/xml"});
+
+      upload(params, signature, blob);
+
+    </script>
+  </body>
+</html>

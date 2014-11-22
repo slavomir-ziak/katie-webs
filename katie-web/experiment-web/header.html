@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+    <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
+    <script type="text/javascript" src="transloadit_xhr.js" ></script>
+
+    <!-- https://developer.mozilla.org/en-US/docs/Web/Guide/Using_FormData_Objects 
+    https://github.com/tim-kos/transloadit_xhr/blob/master/example.js
+    -->
+    <script type="text/javascript">
+	    data = {
+			identifier: "$scope.identifier",
+			age: "$scope.age",
+			sex: "$scope.sex",
+			practise: "$scope.practise",
+			affection: "$scope.affection",
+			panas: ["panas1", "panas2"],
+			framingPosDuration : "framingPosDuration",
+			framingPositive : "framingPositive",
+			framingNegDuration : "framingNegDuration",
+			framingNegative : "framingNegative",
+			startAnswers : [{time:1, color:"color1", correct:"true"}, {time:2, color:"color2", correct:"false"}],
+			pnsAnswers : ["pns", "pns2"],
+			mdmqAnswers : ["mdmq1", "mdmq2"]
+		};
+	
+		function serializeHeader(data) {
+			var sa = [];
+			sa.push("vek", "pohlavie", "roky praxe");
+			
+			for (var i = 1; i < data.panas.length+1; i++) {
+				sa.push("panas"+i);
+			}
+
+			sa.push("framingpoz_cas","framing pozitivny","framingneg_cas","framing negativny");
+			
+			for (var i = 1; i < data.startAnswers.length+1; i++) {
+				sa.push(i+"cas",i+"odpoved",i+"vyhodnotenie");
+			}
+			for (var i = 1; i < data.pnsAnswers.length+1; i++) {
+				sa.push("PNS"+i);
+			}
+			for (var i = 1; i < data.mdmqAnswers.length+1; i++) {
+				sa.push("MDMQ"+i);
+			}
+
+			sa.push("cislelny kod", "nalada");
+
+			return sa.join(";");
+		}
+
+
+		function serializeData(data) {
+			var sa = [];
+			sa.push(data.age,data.sex,data.practise);
+			Array.prototype.push.apply(sa,data.panas);
+			sa.push(data.framingPosDuration, data.framingPositive, data.framingNegDuration, data.framingNegative);
+			for (var i = 0; i < data.startAnswers.length; i++) {
+				var result = data.startAnswers[i];
+				sa.push(result.time,result.color,result.correct);
+			}
+			Array.prototype.push.apply(sa,data.pnsAnswers);
+			Array.prototype.push.apply(sa,data.mdmqAnswers);
+			sa.push(data.identifier, data.affection);
+
+			return sa.join(";");
+		}
+
+		var serializedHeader = serializeHeader(data);
+		var serializedData = serializeData(data);
+		
+
+		console.log(serializedHeader+"\n\r"+serializedData);
+    </script>
+  </body>
+</html>

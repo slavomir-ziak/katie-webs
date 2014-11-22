@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html ng-app="questionnaire">
+	<head>
+		<title>Questionnaire</title>
+		<link rel="stylesheet" href="./app.css" />
+	</head>
+	<body>
+		<div action="#" metdod="post" ng-controller="QuestionsCtrl">
+			<h1>Dotazník</h1>
+			<div id="startPage" ng-show="currentSection=='startPage'">
+				<p>
+					Milí respondent,
+					touto cestou by sme Vás chceli poprosiť o vyplnenie nasledujúceho dotazník a série úloh, ktoré sú súčasťou grantového riešenia: 
+				</p>
+				<p> 
+					<strong>„Rozhodovanie v emočne náročných situáciách: Výskum makrokognícií a emócií v paradigme naturalistického rozhodovania. VEGA 2/0080/14“.</strong>
+				</p>
+				<p>
+					Účasť je dobrovoľná a anonymná.	Prosím venujte dostatočnú pozornosť čítaniu inštrukcií.
+				</p>
+				<p>
+					Dotazník je potrebné vyplniť bez prerušovania, preto bude otvorený na celú obrazovku a pri pokuse o opustnie okna bude vypĺňanie dotazníku ukončené.
+				</p>
+				<input ng-click="startQuestions()" type="button" value="Začať" />
+			</div>
+			<div ng-show="currentSection=='demography'">
+				<h2>Demografia</h2>
+				<form name="demographyForm" class="css-form">
+					<ul>
+						<li>Prosím vyplňte  nasledujúce demografické údaje:</li>
+						<li><label class="demoLabel"><span>Vek:</span><input type="number" ng-model="age" required="required" /></label></li>
+						<li><label class="demoLabel"><span>Pohlavie:</span></label><label><input type="radio" name="sex" value="F" ng-model="sex" required="required" />Žena</label><label><input type="radio" name="sex" value="M" ng-model="sex" required="required"/>Muž</label></li>
+						<li><label class="demoLabel"><span>Počet rokov praxe v zdravotníctve:</span><input type="number" name="practiseYears" required="required" ng-model="practise" /></label></li>
+					</ul>
+					<input type="button" value="Ďalej" ng-click="showSection('velten')" ng-disabled="demographyForm.$invalid" />
+				</form>
+			</div>
+			<div ng-show="currentSection=='velten'">
+				<p>
+					{{veltenQuote}}
+				</p>
+				<input type="button" value="Ďalej" ng-click="nextVeltenQuote()" />
+			</div>
+			<div ng-show="currentSection=='panas'">
+				<p>
+					Tento dotazník pozostáva z dvadsiatich tvrdení popisujúcich rôzne pocity a emócie. Pozorne si všetky prečítajte a pri každom z nich zvoľte jednu z možných odpovedí tak, aby charakterizovala Váš súčasný momentálny stav v tejto chvíli:
+				</p>
+				<ol>
+					<li>veľmi slabo alebo vôbec</li>
+					<li>trochu</li>
+					<li>mierne</li>
+					<li>značne</li>
+					<li>mimoriadne</li>					
+				</ol>
+				<form name="panasForm">
+					<table>
+						<tr ng-repeat="panasQuestion in questions.panas.questions">
+							<td>{{$index}}.</td>
+							<td>{{panasQuestion}}</td>
+							<td><label>1<input type="radio" value="1" name="panas_{{$index}}" required="required" ng-model="$parent.panasAnswers[$index]" /></label></td>
+							<td><label>2<input type="radio" value="2" name="panas_{{$index}}" required="required" ng-model="$parent.panasAnswers[$index]" /></label></td>
+							<td><label>3<input type="radio" value="3" name="panas_{{$index}}" required="required" ng-model="$parent.panasAnswers[$index]" /></label></td>
+							<td><label>4<input type="radio" value="4" name="panas_{{$index}}" required="required" ng-model="$parent.panasAnswers[$index]" /></label></td>
+							<td><label>5<input type="radio" value="5" name="panas_{{$index}}" required="required" ng-model="$parent.panasAnswers[$index]" /></label></td>
+						</tr>
+					</table>
+					<input type="button" value="Ďalej" ng-click="showSection('framing')" ng-disabled="panasForm.$invalid" />
+				</form>
+			</div>
+			<div ng-show="currentSection=='framing'">
+				<div ng-show="framing==1">
+					<p>
+						{{questions.framing[0].description}}
+					</p>
+					<form name="framingPosForm">
+						<ol>
+							<li><label><input type="radio" name="framingPos" value="a" ng-model="framingPositive" required="required">{{questions.framing[0].optionA}}</label></li>
+							<li><label><input type="radio" name="framingPos" value="b" ng-model="framingPositive" required="required">{{questions.framing[0].optionB}}</label></li>
+						</ol>
+						<input type="button" value="Ďalej" ng-click="negFraming()" ng-disabled="framingPosForm.$invalid" />
+					</form>
+				</div>
+				<div ng-show="framing==2">
+					<p>
+						{{questions.framing[1].description}}
+					</p>
+					<form name="framingNegForm">
+						<ol>
+							<li><label><input type="radio" name="framingTwo" value="a" ng-model="framingNegative" required="required">{{questions.framing[1].optionA}}</label></li>
+							<li><label><input type="radio" name="framingTwo" value="b" ng-model="framingNegative" required="required">{{questions.framing[1].optionB}}</label></li>
+						</ol>
+						<input type="button" value="Ďalej" ng-click="showSection('start')" ng-disabled="framingNegForm.$invalid" />
+					</form>
+				</div>
+			</div>
+			<div ng-show="currentSection=='start'">
+				<div ng-repeat="question in questions.start" ng-show="currentQuestion==$index" >
+					<dl>
+						<dt>Pohyblivosť:</dt>
+						<dd>{{question.move}}</dd>
+						<dt>Df/min.:</dt>
+						<dd>{{question.df}}</dd>
+						<dt>Kapil. návrat/sek:</dt>
+						<dd>{{question.kapil}}</dd>
+						<dt>Vedomie:</dt>
+						<dd>{{question.consc}}</dd>
+						<dt>Poranenie:</dt>
+						<dd>{{question.injury}}</dd>
+					</dl>
+					<p>Priorita:</p>
+					<div>
+						<span ng-click="vote($index,'green')" class="green"></span>
+						<span ng-click="vote($index,'yellow')" class="yellow"></span>
+						<span ng-click="vote($index,'red')" class="red"></span>
+						<span ng-click="vote($index,'black')" class="black"></span>
+					</div>
+				</div>
+			</div>
+			<div ng-show="currentSection=='pns'">
+				<p>
+					{{questions.pns.description}}
+				</p>
+				<table>
+					<tr>
+						<th>1</th>
+						<th>2</th>
+						<th>3</th>
+						<th>4</th>
+						<th>5</th>
+						<th>6</th>
+					</tr>
+					<tr>
+						<td>Vôbec nesúhlasím</td>
+						<td>Stredne nesúhlasím</td>
+						<td>Mierne nesúhlasím</td>
+						<td>Mierne súhlasím</td>
+						<td>Stredne súhlasím</td>
+						<td>Plne súhlasím</td>
+					</tr>
+				</table>
+				<form name="pnsForm">
+					<table>
+						<tr>
+							<th></th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+							<th>4</th>
+							<th>5</th>
+							<th>6</th>
+						</tr>
+						<tr ng-repeat="question in questions.pns.questions" >
+							<td>{{question}}</td>
+							<td><input type="radio" value="1" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="2" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="3" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="4" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="5" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="5" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+						</tr>
+					</table>
+					<input type="button" value="Ďalej" ng-click="showSection('mdmq')" ng-disabled="pnsForm.$invalid" />
+				</form>
+			</div>
+			<div ng-show="currentSection=='mdmq'">
+				<p>
+					{{questions.mdmq.description}}
+				</p>
+				<form name="mdmqForm">
+					<table>
+						<tr>
+							<th></th>
+							<th>Pre mňa neplatí</th>
+							<th>Niekedy platí</th>
+							<th>Pre mňa platí</th>
+						</tr>
+						<tr ng-repeat="question in questions.mdmq.questions" >
+							<td>{{question}}</td>
+							<td><input type="radio" value="1" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="2" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="3" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
+						</tr>
+					</table>
+					<input type="button" value="Ďalej" ng-click="showSection('submit')" ng-disabled="mdmqForm.$invalid" />
+					</div>
+				<div ng-show="currentSection=='submit'">
+					<p>
+						Ďakujeme za spoluprácu. Váš identifikačný kód je {{identifier}}.
+					</p>
+					<input type="button" value="Dokončiť" ng-click="sendResults()" />
+				</div>
+
+			</div>
+			<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+			<script src="bower_components/angular/angular.js"></script>
+			<script src="bower_components/angular-resource/angular-resource.js"></script>
+			<!-- upload related -->
+		    <script src="//assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
+		    <script type="text/javascript" src="transloadit_xhr.js" ></script>
+
+			<script src="app.js"></script>
+			</body>		
+		</html>

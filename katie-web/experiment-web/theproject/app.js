@@ -30,13 +30,14 @@ app.controller('QuestionsCtrl', [
 	'$scope', 'Questions',
 	function($scope, Questions) {
 		var audio;
-		var sections = ["startPage", "demography", "velten", "panas", "framing", "start", "pns", "mdmq", "submit"];
+		var sections = ["startPage", "demography", "velten", "panas", "framing", "start", "pns", "rei", "submit"];
 		$scope.questions = Questions.get();
 		$scope.currentSection = "startPage";
 		$scope.startAnswers = [];
 		$scope.panasAnswers = [];
 		$scope.pnsAnswers = [];
-		$scope.mdmqAnswers = [];
+		//		$scope.mdmqAnswers = [];
+		$scope.reiAnswers = [];
 
 		$scope.showSection = function(section) {
 			$scope.currentSection = section;
@@ -106,6 +107,11 @@ app.controller('QuestionsCtrl', [
 			$scope.pnsAnswers[5] = (7 - $scope.pnsAnswers[5]) + "";
 			$scope.pnsAnswers[10] = (7 - $scope.pnsAnswers[10]) + "";
 
+			var reiInvert = $scope.questions.rei.negative;
+			for (var i = 0; i < reiInvert.length; i++) {
+				$scope.reiAnswers[reiInvert[i]] = (7 - $scope.reiAnswers[reiInvert[i]]) + "";
+			}
+
 			data = {
 				identifier: $scope.identifier,
 				age: $scope.age,
@@ -119,9 +125,11 @@ app.controller('QuestionsCtrl', [
 				framingNegative : $scope.framingNegative,
 				startAnswers : $scope.startAnswers,
 				pnsAnswers : $scope.pnsAnswers,
-				mdmqAnswers : $scope.mdmqAnswers
+				//				mdmqAnswers : $scope.mdmqAnswers
+				reiAnswers : $scope.reiAnswers
 			};
 			console.log(data);
+			sendResults();
 		};
 
 		$scope.showQuestion = function(index) {
@@ -152,14 +160,12 @@ app.controller('QuestionsCtrl', [
 			//			}
 		};
 
-		$scope.sendResults = function() {
-
-			var serializedHeader = serializeHeader(data);
-			console.log(serializedHeader);
+		function sendResults() {
+            var serializedHeader = serializeHeader(data);
+            console.log(serializedHeader);
 
 			var serializedData = serializeData(data);
 			console.log(serializedData);
-			//send serialized data from here
 			var content = serializedHeader+"\n\r"+serializedData;
 
 			var blob = new Blob([ content ], { type: "text/xml"});
@@ -167,21 +173,21 @@ app.controller('QuestionsCtrl', [
 			var signature = '{"auth":{"key":"9b1e93f05af411e481a62561be869cb8"},"template_id":"dc003a405af411e49922a70ffbc4fd6d"}';
 
 			var transloadit = new TransloaditXhr({
-				params: params,
-				signature: signature,
+			   params: params,
+			   signature: signature,
 
-				successCb: function(fileUrl) {
-					alert("Dáta úspešne odoslané");
-				},
+			   successCb: function(fileUrl) {
+			           alert("Dáta úspešne odoslané.");
+			   },
 
-				errorCb: function(error) {
-					alert("Pri odosielaní dát nastal problém:"+error);
-				}
+			   errorCb: function(error) {
+			           alert("Pri odosielaní dát nastal problém:"+error);
+			   }
 			});
 
 			transloadit.uploadFile(blob);
 
-		};
+		}
 
 
 		function serializeData(data) {
@@ -194,37 +200,37 @@ app.controller('QuestionsCtrl', [
 				sa.push(result.time,result.color,result.correct);
 			}
 			Array.prototype.push.apply(sa,data.pnsAnswers);
-			Array.prototype.push.apply(sa,data.mdmqAnswers);
+			//			Array.prototype.push.apply(sa,data.mdmqAnswers);
+			Array.prototype.push.apply(sa,data.reiAnswers);
 			sa.push(data.identifier, data.affection);
-
-			return sa.join(";");
-		};
-
-		function serializeHeader(data) {
-			var sa = [];
-			sa.push("vek", "pohlavie", "roky praxe");
-			
-			for (var i = 1; i < data.panas.length+1; i++) {
-				sa.push("panas"+i);
-			}
-
-			sa.push("framingpoz_cas","framing pozitivny","framingneg_cas","framing negativny");
-			
-			for (var i = 1; i < data.startAnswers.length+1; i++) {
-				sa.push(i+"cas",i+"odpoved",i+"vyhodnotenie");
-			}
-			for (var i = 1; i < data.pnsAnswers.length+1; i++) {
-				sa.push("PNS"+i);
-			}
-			for (var i = 1; i < data.mdmqAnswers.length+1; i++) {
-				sa.push("MDMQ"+i);
-			}
-
-			sa.push("cislelny kod", "nalada");
 
 			return sa.join(";");
 		}
 
+       function serializeHeader(data) {
+           var sa = [];
+           sa.push("vek", "pohlavie", "roky praxe");
+           
+           for (var i = 1; i < data.panas.length+1; i++) {
+                   sa.push("panas"+i);
+           }
+
+           sa.push("framingpoz_cas","framing pozitivny","framingneg_cas","framing negativny");
+           
+           for (var i = 1; i < data.startAnswers.length+1; i++) {
+                   sa.push(i+"cas",i+"odpoved",i+"vyhodnotenie");
+           }
+           for (var i = 1; i < data.pnsAnswers.length+1; i++) {
+                   sa.push("PNS"+i);
+           }
+           for (var i = 1; i < data.reiAnswers.length+1; i++) {
+                   sa.push("REI"+i);
+           }
+
+           sa.push("cislelny kod", "nalada");
+
+           return sa.join(";");
+       }
 
 	}
 ]);

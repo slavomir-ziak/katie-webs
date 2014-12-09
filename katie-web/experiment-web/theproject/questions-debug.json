@@ -46,13 +46,13 @@
 			"Cítim sa nepríjemne, ak nie sú jasné pravidlá určitej situácie."
 		]
 	},
-	"mdmq" : {
-		"description" : "Označte prosím na 3-bodovej škále, do akej miery tieto výroky vystihujú Vaše správanie v ťažkých situáciách, keď je potrebné urobiť závažné rozhodnutie:",
+	"rei" : {
+		"description" : "",
 		"questions" : [
-			"Rád/rada zvažujem všetky možnosti.",
-			"Vyhýbam sa rozhodovaniu.",
-			"Mám radšej, ak ľudia, ktorí sú lepšie informovaní, rozhodnú namiesto mňa."
-		]
-
+			"Pokúšam sa vyhýbať situáciám, ktoré vyžadujú náročné rozmýšľanie.",
+			"Rád/a sa spolieham na moje intuitívne pocity.",
+			"Nie som až taký/á dobrý/á v riešení komplikovaných problémov."
+		],
+		"negative" : [0,2,3,6,8,12,14,16,17,19,20,22,23,25,27,31,33,34,39]
 	}
 }

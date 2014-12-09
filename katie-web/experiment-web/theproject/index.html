@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="./app.css" />
 	</head>
 	<body>
-		<div action="#" metdod="post" ng-controller="QuestionsCtrl">
+		<div ng-controller="QuestionsCtrl">
 			<h1>Dotazník</h1>
 			<div id="startPage" ng-show="currentSection=='startPage'">
 				<p>
@@ -159,45 +159,76 @@
 							<td><input type="radio" value="5" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
 						</tr>
 					</table>
-					<input type="button" value="Ďalej" ng-click="showSection('mdmq')" ng-disabled="pnsForm.$invalid" />
+					<input type="button" value="Ďalej" ng-click="showSection('rei')" ng-disabled="pnsForm.$invalid" />
 				</form>
 			</div>
-			<div ng-show="currentSection=='mdmq'">
+			<!--
+<div ng-show="currentSection=='mdmq'">
+<p>
+{{questions.mdmq.description}}
+</p>
+<form name="mdmqForm">
+<table>
+<tr>
+<th></th>
+<th>Pre mňa neplatí</th>
+<th>Niekedy platí</th>
+<th>Pre mňa platí</th>
+</tr>
+<tr ng-repeat="question in questions.mdmq.questions" >
+<td>{{question}}</td>
+<td><input type="radio" value="1" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
+<td><input type="radio" value="2" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
+<td><input type="radio" value="3" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
+</tr>
+</table>
+<input type="button" value="Ďalej" ng-click="showSection('submit')" ng-disabled="mdmqForm.$invalid" />
+</form>
+</div>
+-->
+			<div ng-show="currentSection=='rei'">
 				<p>
-					{{questions.mdmq.description}}
+					{{questions.rei.description}}
 				</p>
-				<form name="mdmqForm">
+				<form name="reiForm">
 					<table>
 						<tr>
 							<th></th>
-							<th>Pre mňa neplatí</th>
-							<th>Niekedy platí</th>
-							<th>Pre mňa platí</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+							<th>4</th>
+							<th>5</th>
+							<th>6</th>
 						</tr>
-						<tr ng-repeat="question in questions.mdmq.questions" >
+						<tr ng-repeat="question in questions.rei.questions" >
 							<td>{{question}}</td>
-							<td><input type="radio" value="1" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
-							<td><input type="radio" value="2" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
-							<td><input type="radio" value="3" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="1" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="2" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="3" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="4" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="5" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="6" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
 						</tr>
 					</table>
-					<input type="button" value="Ďalej" ng-click="showSection('submit')" ng-disabled="mdmqForm.$invalid" />
-					</div>
-				<div ng-show="currentSection=='submit'">
-					<p>
-						Ďakujeme za spoluprácu. Váš identifikačný kód je {{identifier}}.
-					</p>
-					<input type="button" value="Dokončiť" ng-click="sendResults()" />
-				</div>
-
+					<input type="button" value="Ďalej" ng-click="showSection('submit')" ng-disabled="reiForm.$invalid" />
+				</form>
 			</div>
-			<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
-			<script src="bower_components/angular/angular.js"></script>
-			<script src="bower_components/angular-resource/angular-resource.js"></script>
-			<!-- upload related -->
-		    <script src="//assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
-		    <script type="text/javascript" src="transloadit_xhr.js" ></script>
+			<div ng-show="currentSection=='submit'">
+				<p>
+					Ďakujeme za spoluprácu. Váš identifikačný kód je {{identifier}}.
+				</p>
+				<input type="button" value="Dokončiť" />
+			</div>
 
-			<script src="app.js"></script>
-			</body>		
-		</html>
+		</div>
+		<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-resource/angular-resource.js"></script>
+        <!-- upload related -->
+        <script src="//assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
+        <script type="text/javascript" src="transloadit_xhr.js" ></script>
+        <!-- /upload related -->
+		<script src="app.js"></script>
+	</body>		
+</html>

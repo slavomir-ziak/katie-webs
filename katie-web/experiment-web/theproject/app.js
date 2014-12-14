@@ -50,6 +50,7 @@ app.controller('QuestionsCtrl', [
 			var quotes = $scope.questions.velten[$scope.affection];
 			$scope.veltenQuote = quotes[0];
 			$scope.veltenIndex = 0;
+			watchBlur2();
 		};
 
 		$scope.nextVeltenQuote = function() {
@@ -145,7 +146,7 @@ app.controller('QuestionsCtrl', [
 			var	el = document.documentElement, 
 				rfs = el.requestFullScreen
 			|| el.webkitRequestFullScreen
-			|| el.msRequestFullScreen
+			|| el.msRequestFullscreen
 			|| el.mozRequestFullScreen;
 
 			rfs.call(el, Element.ALLOW_KEYBOARD_INPUT);
@@ -153,7 +154,6 @@ app.controller('QuestionsCtrl', [
 			$scope.identifier = Math.round(Math.random() * 1000000);
 
 			$scope.showSection("demography");
-			watchBlur2();
 
 			//			window.onbeforeunload = function() {
 			//				return "adasd";

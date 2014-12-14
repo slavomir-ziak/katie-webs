@@ -280,7 +280,7 @@
 		]
 	},
 	"rei" : {
-		"description" : "Vyberte jednu z moznosti",
+		"description" : "Prečítajte si pozorne každé z nasledujúcich tvrdení a posúďte, nakoľko s nimi súhlasíte - podľa vašej mienky, postojov a skúseností. Na tieto otázky neexistujú \"dobré\" ani \"zlé\" odpovede. Odpovedajte preto úprimne podľa nasledovnej 6-bodovej škály:",
 		"questions" : [
 			"Pokúšam sa vyhýbať situáciám, ktoré vyžadujú náročné rozmýšľanie.",
 			"Rád/a sa spolieham na moje intuitívne pocity.",

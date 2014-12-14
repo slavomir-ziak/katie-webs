@@ -30,7 +30,7 @@ app.controller('QuestionsCtrl', [
 	'$scope', 'Questions',
 	function($scope, Questions) {
 		var audio;
-		var sections = ["startPage", "demography", "velten", "panas", "framing", "start", "pns", "rei", "submit"];
+		var sections = ["startPage", "demography", "velten", "panas", "framing", "startInstr", "start", "pns", "rei", "submit"];
 		$scope.questions = Questions.get();
 		$scope.currentSection = "startPage";
 		$scope.startAnswers = [];

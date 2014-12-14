@@ -39,6 +39,9 @@
 				<p>
 					{{veltenQuote}}
 				</p>
+				<p ng-show="veltenIndex==0">
+					Stlačením tlačidla ďalej sa spustí hudba, preto prosím majte zapnutý reproduktor, alebo nasadené slúchadlá.
+				</p>
 				<input type="button" value="Ďalej" ng-click="nextVeltenQuote()" />
 			</div>
 			<div ng-show="currentSection=='panas'">
@@ -89,9 +92,15 @@
 							<li><label><input type="radio" name="framingTwo" value="a" ng-model="framingNegative" required="required">{{questions.framing[1].optionA}}</label></li>
 							<li><label><input type="radio" name="framingTwo" value="b" ng-model="framingNegative" required="required">{{questions.framing[1].optionB}}</label></li>
 						</ol>
-						<input type="button" value="Ďalej" ng-click="showSection('start')" ng-disabled="framingNegForm.$invalid" />
+						<input type="button" value="Ďalej" ng-click="showSection('startInstr')" ng-disabled="framingNegForm.$invalid" />
 					</form>
 				</div>
+			</div>
+			<div ng-show="currentSection=='startInstr'">
+				<p>
+					Vašou nasledujúcou úlohou bude zatriediť pacientov nehody hromadného postihnutia osôb podľa systému START.
+				</p>
+				<input type="button" value="Ďalej" ng-click="showSection('start')" />
 			</div>
 			<div ng-show="currentSection=='start'">
 				<div ng-repeat="question in questions.start" ng-show="currentQuestion==$index" >
@@ -156,7 +165,7 @@
 							<td><input type="radio" value="3" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
 							<td><input type="radio" value="4" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
 							<td><input type="radio" value="5" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
-							<td><input type="radio" value="5" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="6" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
 						</tr>
 					</table>
 					<input type="button" value="Ďalej" ng-click="showSection('rei')" ng-disabled="pnsForm.$invalid" />
@@ -190,6 +199,24 @@
 				<p>
 					{{questions.rei.description}}
 				</p>
+				<table>
+					<tr>
+						<th>1</th>
+						<th>2</th>
+						<th>3</th>
+						<th>4</th>
+						<th>5</th>
+						<th>6</th>
+					</tr>
+					<tr>
+						<td>Vôbec nesúhlasím</td>
+						<td>Stredne nesúhlasím</td>
+						<td>Mierne nesúhlasím</td>
+						<td>Mierne súhlasím</td>
+						<td>Stredne súhlasím</td>
+						<td>Plne súhlasím</td>
+					</tr>
+				</table>
 				<form name="reiForm">
 					<table>
 						<tr>
@@ -225,10 +252,10 @@
 		<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/angular-resource/angular-resource.js"></script>
-        <!-- upload related -->
-        <script src="//assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
-        <script type="text/javascript" src="transloadit_xhr.js" ></script>
-        <!-- /upload related -->
+		<!-- upload related -->
+		<script src="//assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
+		<script type="text/javascript" src="transloadit_xhr.js" ></script>
+		<!-- /upload related -->
 		<script src="app.js"></script>
 	</body>		
 </html>

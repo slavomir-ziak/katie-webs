@@ -1,3 +1,5 @@
+$('#mainWrapper')[0].style.display = "block";
+
 var app = angular.module('questionnaire', ['ngResource']);
 
 app.factory('Questions', [
@@ -149,7 +151,9 @@ app.controller('QuestionsCtrl', [
 			|| el.msRequestFullscreen
 			|| el.mozRequestFullScreen;
 
-			rfs.call(el, Element.ALLOW_KEYBOARD_INPUT);
+			if (rfs) {
+			//	rfs.call(el, Element.ALLOW_KEYBOARD_INPUT);
+			}
 
 			$scope.identifier = Math.round(Math.random() * 1000000);
 

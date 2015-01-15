@@ -152,7 +152,7 @@
 		{
 			"description" : "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 45 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií :",
 			"optionA" : "Pri alternatíve A sa zachráni 15 ľudí.",
-			"optionB" : "Pri alternatíve B je 1/3 pravdepodobnosť, že sa zachráni 30 ľudí a 2/3 pravdepodobnosť, že sa nezachráni nikto."
+			"optionB" : "Pri alternatíve B je 1/3 pravdepodobnosť, že sa zachráni 45 ľudí a 2/3 pravdepodobnosť, že sa nezachráni nikto."
 		},
 		{
 			"description" : "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 600 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",

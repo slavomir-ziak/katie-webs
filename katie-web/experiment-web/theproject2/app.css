@@ -1,0 +1,30 @@
+.demoLabel span {
+	display: inline-block;
+	width: 240px;
+}
+
+.css-form li {
+	list-style-type: none;
+}
+
+.green, .yellow, .red, .black {
+	display: inline-block;
+	width: 90px;
+	height: 90px;
+}
+
+.green {
+	background-color: green;
+}
+
+.yellow {
+	background-color: yellow;
+}
+
+.red {
+	background-color: red;
+}
+
+.black {
+	background-color: black;
+}

@@ -10,19 +10,14 @@
 		<div ng-controller="QuestionsCtrl" style="display:none" id="mainWrapper">
 			<h1>Dotazník</h1>
 			<div id="startPage" ng-show="currentSection=='startPage'">
-				<p>
-					Milí respondent,
-					touto cestou by sme Vás chceli poprosiť o vyplnenie nasledujúceho dotazník a série úloh, ktoré sú súčasťou grantového riešenia: 
-				</p>
-				<p> 
-					<strong>„Rozhodovanie v emočne náročných situáciách: Výskum makrokognícií a emócií v paradigme naturalistického rozhodovania. VEGA 2/0080/14“.</strong>
-				</p>
-				<p>
-					Účasť je dobrovoľná a anonymná.	Prosím venujte dostatočnú pozornosť čítaniu inštrukcií.
-				</p>
-				<p>
-					Dotazník je potrebné vyplniť bez prerušovania, preto otvorte prehliadač na celú obrazovku stlačením klávesy F11. Pri opustní okna, napríklad prepnutím sa do iného, bude vypĺňanie dotazníku ukončené.
-				</p>
+				<p>Dobrý deň, </p>
+				<p>moje meno je Gabriela Mártonová a som študentkou 3. ročníka bakalárskeho štúdia odboru sociálna a pracovná psychológia na Fakulte sociálnych a ekonomických vied Univerzity Komenského. 
+					Obraciam sa na Vás s prosbou o vyplnenie dotazníka, ktorý je súčasťou mnou realizovaného výskumu v rámci bakalárskej práce.
+					Vo svojej práci skúmam rozdiely v rozhodovaní príslušníkov pomáhajúcich profesií a to najmä záchranárov, s rozličným štýlom poznávania (rozličnou potrebou kognitívnej štruktúry) a spracovávania informácií (kognitívnym štýlom).
+					Účasť na výskume je anonymná a dobrovoľná. Získané údaje budú použité len pre potreby tohto výskumu. Vyplnením dotazníka vyjadrujete súhlas so spracovaním údajov podľa vyššie uvedených podmienok. Vyplnenie dotazníka zaberie približne 15 minút Vášho času. V prípade, ak by ste mali nejaké otázky, alebo by ste mali záujem o celkové výsledky výskumu, ochotne Vám ich poskytnem na emailovej adrese: gabriela.mar93@gmail.com.
+					</p>
+				<p>Veľmi pekne Vám ďakujem za ochotu!</p>
+				
 				<input ng-click="startQuestions()" type="button" value="Začať" />
 			</div>
 			<div ng-show="currentSection=='demography'">
@@ -32,46 +27,13 @@
 						<li>Prosím vyplňte  nasledujúce demografické údaje:</li>
 						<li><label class="demoLabel"><span>Vek:</span><input type="number" ng-model="age" required="required" /></label></li>
 						<li><label class="demoLabel"><span>Pohlavie:</span></label><label><input type="radio" name="sex" value="F" ng-model="sex" required="required" />Žena</label><label><input type="radio" name="sex" value="M" ng-model="sex" required="required"/>Muž</label></li>
-						<li><label class="demoLabel"><span>Počet rokov praxe v zdravotníctve:</span><input type="number" name="practiseYears" required="required" ng-model="practise" /></label></li>
+						<li><label class="demoLabel"><span>Počet rokov praxe:</span><input type="number" name="practiseYears" required="required" ng-model="practise" /></label></li>
+						<li><label class="demoLabel"><span>Povolanie:</span><input type="text" name="jobName" required="required" ng-model="jobName" /></label></li>
 					</ul>
-					<input type="button" value="Ďalej" ng-click="showSection('velten')" ng-disabled="demographyForm.$invalid" />
+					<input type="button" value="Ďalej" ng-click="showSection('framing')" ng-disabled="demographyForm.$invalid" />
 				</form>
 			</div>
-			<div ng-show="currentSection=='velten'">
-				<p>
-					{{veltenQuote}}
-				</p>
-				<p ng-show="veltenIndex==0">
-					Stlačením tlačidla ďalej sa spustí hudba, preto prosím majte zapnutý reproduktor, alebo nasadené slúchadlá.
-				</p>
-				<input type="button" value="Ďalej" ng-click="nextVeltenQuote()" />
-			</div>
-			<div ng-show="currentSection=='panas'">
-				<p>
-					Tento dotazník pozostáva z dvadsiatich tvrdení popisujúcich rôzne pocity a emócie. Pozorne si všetky prečítajte a pri každom z nich zvoľte jednu z možných odpovedí tak, aby charakterizovala Váš súčasný momentálny stav v tejto chvíli:
-				</p>
-				<ol>
-					<li>veľmi slabo alebo vôbec</li>
-					<li>trochu</li>
-					<li>mierne</li>
-					<li>značne</li>
-					<li>mimoriadne</li>					
-				</ol>
-				<form name="panasForm">
-					<table>
-						<tr ng-repeat="panasQuestion in questions.panas.questions">
-							<td>{{$index}}.</td>
-							<td>{{panasQuestion}}</td>
-							<td><label>1<input type="radio" value="1" name="panas_{{$index}}" required="required" ng-model="$parent.panasAnswers[$index]" /></label></td>
-							<td><label>2<input type="radio" value="2" name="panas_{{$index}}" required="required" ng-model="$parent.panasAnswers[$index]" /></label></td>
-							<td><label>3<input type="radio" value="3" name="panas_{{$index}}" required="required" ng-model="$parent.panasAnswers[$index]" /></label></td>
-							<td><label>4<input type="radio" value="4" name="panas_{{$index}}" required="required" ng-model="$parent.panasAnswers[$index]" /></label></td>
-							<td><label>5<input type="radio" value="5" name="panas_{{$index}}" required="required" ng-model="$parent.panasAnswers[$index]" /></label></td>
-						</tr>
-					</table>
-					<input type="button" value="Ďalej" ng-click="showSection('framing')" ng-disabled="panasForm.$invalid" />
-				</form>
-			</div>
+			
 			<div ng-show="currentSection=='framing'">
 				<div ng-show="framing==1">
 					<p>

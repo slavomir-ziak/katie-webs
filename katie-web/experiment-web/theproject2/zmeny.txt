@@ -1,0 +1,2 @@
+pridat jobName
+odobrat panas_*

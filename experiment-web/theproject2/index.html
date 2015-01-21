@@ -35,18 +35,20 @@
 			</div>
 			
 			<div ng-show="currentSection=='framing'">
-				<div ng-show="framing==1">
+				<div ng-repeat="frm in questions.framing" ng-show="currentFrm==$index" >
+				
 					<p>
-						{{questions.framing[0].description}}
+						{{frm.description}}
 					</p>
 					<form name="framingPosForm">
 						<ol>
-							<li><label><input type="radio" name="framingPos" value="a" ng-model="framingPositive" required="required">{{questions.framing[0].optionA}}</label></li>
-							<li><label><input type="radio" name="framingPos" value="b" ng-model="framingPositive" required="required">{{questions.framing[0].optionB}}</label></li>
+							<li><label><input type="radio" name="framingPos" value="a" ng-model="framingPositive" required="required">{{frm.optionA}}</label></li>
+							<li><label><input type="radio" name="framingPos" value="b" ng-model="framingPositive" required="required">{{frm.optionB}}</label></li>
 						</ol>
-						<input type="button" value="Ďalej" ng-click="negFraming()" ng-disabled="framingPosForm.$invalid" />
+						<input type="button" value="Ďalej" ng-click="nextFraming($index, framingPosForm)" ng-disabled="framingPosForm.$invalid" />
 					</form>
 				</div>
+				<!--
 				<div ng-show="framing==2">
 					<p>
 						{{questions.framing[1].description}}
@@ -59,6 +61,7 @@
 						<input type="button" value="Ďalej" ng-click="showSection('startInstr')" ng-disabled="framingNegForm.$invalid" />
 					</form>
 				</div>
+				-->
 			</div>
 			<div ng-show="currentSection=='startInstr'">
 				<p>

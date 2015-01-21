@@ -32,13 +32,11 @@ app.controller('QuestionsCtrl', [
 	'$scope', 'Questions',
 	function($scope, Questions) {
 		var audio;
-		var sections = ["startPage", "demography", "velten", "panas", "framing", "startInstr", "start", "pns", "rei", "submit"];
+		var sections = ["startPage", "demography", "framing", "startInstr", "start", "pns", "rei", "submit"];
 		$scope.questions = Questions.get();
 		$scope.currentSection = "startPage";
 		$scope.startAnswers = [];
-		$scope.panasAnswers = [];
 		$scope.pnsAnswers = [];
-		//		$scope.mdmqAnswers = [];
 		$scope.reiAnswers = [];
 
 		$scope.showSection = function(section) {
@@ -71,7 +69,7 @@ app.controller('QuestionsCtrl', [
 
 		var framingPosStart, framingPosDuration, framingNegStart, framingNegDuration;
 		$scope.showframing = function() {
-			$scope.framing = 1;
+			$scope.currentFrm = 0;
 			framingPosStart = new Date().getTime();
 		};
 
@@ -101,6 +99,11 @@ app.controller('QuestionsCtrl', [
 			}
 		};
 
+		$scope.nextFraming = function(index, form) {
+			$scope.currentFrm = index + 1;	
+			console.log(form);
+		};
+
 		var data;
 		$scope.showsubmit = function() {
 			//			console.log($scope); 1,4,5,10
@@ -121,14 +124,14 @@ app.controller('QuestionsCtrl', [
 				sex: $scope.sex,
 				practise: $scope.practise,
 				affection: $scope.affection,
-				panas: $scope.panasAnswers,
+
 				framingPosDuration : framingPosDuration,
 				framingPositive : $scope.framingPositive,
 				framingNegDuration : framingNegDuration,
 				framingNegative : $scope.framingNegative,
+
 				startAnswers : $scope.startAnswers,
 				pnsAnswers : $scope.pnsAnswers,
-				//				mdmqAnswers : $scope.mdmqAnswers
 				reiAnswers : $scope.reiAnswers
 			};
 			console.log(data);
@@ -204,7 +207,6 @@ app.controller('QuestionsCtrl', [
 				sa.push(result.time,result.color,result.correct);
 			}
 			Array.prototype.push.apply(sa,data.pnsAnswers);
-			//			Array.prototype.push.apply(sa,data.mdmqAnswers);
 			Array.prototype.push.apply(sa,data.reiAnswers);
 			sa.push(data.identifier, data.affection);
 

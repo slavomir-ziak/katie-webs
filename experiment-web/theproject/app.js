@@ -164,6 +164,11 @@ app.controller('QuestionsCtrl', [
 			//			}
 		};
 
+		function davajBodky(){
+			bodky = document.getElementById("bodky");
+			bodky.innerText = bodky.innerText + " .";
+		}
+				
 		function sendResults() {
             var serializedHeader = serializeHeader(data);
             console.log(serializedHeader);
@@ -172,23 +177,28 @@ app.controller('QuestionsCtrl', [
 			console.log(serializedData);
 			var content = serializedHeader+"\n\r"+serializedData;
 
-			var blob = new Blob([ content ], { type: "text/xml"});
-			var params = '{"auth":{"key":"9b1e93f05af411e481a62561be869cb8"},"template_id": "dc003a405af411e49922a70ffbc4fd6d"}';
-			var signature = '{"auth":{"key":"9b1e93f05af411e481a62561be869cb8"},"template_id":"dc003a405af411e49922a70ffbc4fd6d"}';
+			var blob = new Blob([ content ], { type: "text/csv"});
+			
+			var params = '{"auth":{"expires": "2015/10/19 09:01:20+00:00","key":"9b1e93f05af411e481a62561be869cb8"},"template_id": "dc003a405af411e49922a70ffbc4fd6d"}';
+			var signature = null;
 
 			var transloadit = new TransloaditXhr({
 			   params: params,
 			   signature: signature,
 
 			   successCb: function(fileUrl) {
-			           alert("Dáta úspešne odoslané.");
+					alert("Dáta úspešne odoslané.");
+					window.clearInterval(bodkyTimer);
+					bodky = document.getElementById("bodky");
+					bodky.innerText = bodky.innerText + " hotovo. Môžete zatvoriť okno.";
 			   },
 
 			   errorCb: function(error) {
-			           alert("Pri odosielaní dát nastal problém:"+error);
+					alert("Pri odosielaní dát nastal problém:"+error);
 			   }
 			});
 
+			var bodkyTimer = setInterval(davajBodky, 700);
 			transloadit.uploadFile(blob);
 
 		}
@@ -234,8 +244,8 @@ app.controller('QuestionsCtrl', [
            sa.push("cislelny kod", "nalada");
 
            return sa.join(";");
-       }
-
+		}
+		// debug sendResults();
 	}
 ]);
 

@@ -64,7 +64,7 @@
 
         var formPost = new FormData();
         formPost.append("params", this.params);
-        formPost.append("signature", this.signature);
+        if (this.signature != null) formPost.append("signature", this.signature);
         if (typeof fieldsArr !== "undefined") {
 	        for (i=0; i < fieldsArr.length; i++) {
 	  			formPost.append(fieldsArr[i].name, fieldsArr[i].value);

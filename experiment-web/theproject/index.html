@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="questionnaire">
 	<head>
-		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
 		<title>Questionnaire</title>
 		<link rel="stylesheet" href="./app.css" />
 	</head>
@@ -21,7 +21,7 @@
 					Účasť je dobrovoľná a anonymná.	Prosím venujte dostatočnú pozornosť čítaniu inštrukcií.
 				</p>
 				<p>
-					Dotazník je potrebné vyplniť bez prerušovania, preto otvorte prehliadač na celú obrazovku stlačením klávesy F11. Pri opustní okna, napríklad prepnutím sa do iného, bude vypĺňanie dotazníku ukončené.
+					Dotazník je potrebné vyplniť bez prerušovania, preto otvorte prehliadač na celú obrazovku stlačením klávesy F11. Pri opustení okna, napríklad prepnutím sa do iného, bude vypĺňanie dotazníku ukončené.
 				</p>
 				<input ng-click="startQuestions()" type="button" value="Začať" />
 			</div>
@@ -245,9 +245,11 @@
 			</div>
 			<div ng-show="currentSection=='submit'">
 				<p>
-					Ďakujeme za spoluprácu. Váš identifikačný kód je {{identifier}}.
+					Ďakujeme za spoluprácu. Váš identifikačný kód je {{identifier}}. Tento kód si ponechajte, na základe neho Vám bude vyplatená finančná odmena.
 				</p>
-				<input type="button" value="Dokončiť" />
+				<p>
+					Počkajte prosím, kým budú dáta zaslané na server. <span id="bodky"></span>
+				</p>
 			</div>
 
 		</div>

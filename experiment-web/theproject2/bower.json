@@ -2,7 +2,8 @@
   "name": "questionnaire",
   "version": "0.0.0",
   "authors": [
-    "Lukas Zboron <zboron.lukas@gmail.com>"
+    "Lukas Zboron <zboron.lukas@gmail.com>", 
+    "Slavomir Ziak <slavomir.ziak@gmail.com>", 
   ],
   "license": "MIT",
   "private": true,

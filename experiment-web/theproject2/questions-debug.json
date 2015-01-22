@@ -1,57 +1,29 @@
 {
-	"velten" : {
-		"positive" : [
-			"Pozorne si prečítajte nasledujúce tvrdenia. Pri čítaní sa sústreďte vždy iba na to jedno aktuálne. Váš úspech pri navodení emócie do veľkej miery závisí od Vašej ochoty akceptovať a reagovať v zmysle významu každého tvrdenia. Pokúste sa vnímať a stotožňovať s pocitmi, ktoré vo Vás tieto vety vyvolávajú. Snažte sa vcítiť do jednotlivých stavov a ak je to pre Vás prirodzené, skúste si predstaviť scény, kedy ste podobný stav, či pocit zažili.",
-			"1. Dnešok nie je ani lepší, ani horší ako akýkoľvek iný deň.",
-			"56. Vau, cítim sa úžasne!"
-		],
-		"negative" : [
-			"Pozorne si prečítajte nasledujúce tvrdenia. Pri čítaní sa sústreďte vždy iba na to jedno aktuálne. Váš úspech pri navodení emócie do veľkej miery závisí od Vašej ochoty akceptovať a reagovať v zmysle významu každého tvrdenia. Pokúste sa vnímať a stotožňovať s pocitmi, ktoré vo Vás tieto vety vyvolávajú. Snažte sa vcítiť do jednotlivých stavov a ak je to pre Vás prirodzené, skúste si predstaviť scény, kedy ste podobný stav, či pocit zažili.",
-			"1. Dnešok nie je ani lepší, ani horší ako akýkoľvek iný deň.",
-			"58. Chcem ísť spať a už sa nikdy nevzbudiť."
-		]
-	},
-	"panas" : {
-		"instructions" : "Question 3 text",
-		"questions" : [
-			"Zaujatý",
-			"Zúfalý",
-			"Aktívny",
-			"Vyľakaný"
-		]
-	},
+	
 	"framing" : [
-		{
-			"description" : "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 45 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií :",
-			"optionA" : "Pri alternatíve A sa zachráni 15 ľudí.",
-			"optionB" : "Pri alternatíve B je 1/3 pravdepodobnosť, že sa zachráni 30 ľudí a 2/3 pravdepodobnosť, že sa nezachráni nikto."
-		},
-		{
-			"description" : "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 600 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-			"optionA" : "Pri alternatíve A zomrie 400 ľudí.",
-			"optionB" : "Pri alternatíve B je 1/3 pravdepodobnosť, že nikto nezomrie a 2/3 pravdepodobnosť, že zomrie 600 ľudí."
-		}
-	],
-	"start" : [
-		{"move":"chodí","df":"16","kapil":"1","consc":"orientovany","injury":"bez por","color":"green"},
-		{"move":"leží","df":"20","kapil":"3","consc":"neodpovedá","injury":"fr.DK bilat","color":"red"},
-		{"move":"chodí","df":"16","kapil":"1","consc":"orientovany","injury":"exkoriacie","color":"green"}
+	    {
+	        "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 160 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
+	        "optionA": "Pri alternatíve A sa zachráni 64 ľudí",
+	        "optionB": "Pri alternatíve B je 40% pravdepodobnosť, že sa zachráni 160 ľudí a 60% pravdepodobnosť, že sa nezachráni nikto"
+	    },
+	    {
+	        "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 120 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
+	        "optionA": "Pri alternatíve A zomrie 48 ľudí",
+	        "optionB": "Pri alternatíve B je 40% pravdepodobnosť, že nikto nezomrie a 60% pravdepodobnosť, že zomrie 120 ľudí"
+	    }
 	],
 	"pns" : {
 		"description" : "Prečítajte si pozorne každé z nasledujúcich tvrdení a posúďte, nakoľko s nimi súhlasíte - podľa vašej mienky, postojov a skúseností. Na tieto otázky neexistujú \"dobré\" ani \"zlé\" odpovede. Odpovedajte preto úprimne a rýchlo podľa nasledovnej 6-bodovej škály:",
 		"questions" : [
 			"Rozruší ma, ak sa dostanem do situácie, o ktorej neviem, čo od nej môžem očakávať.",
-			"Nevadia mi veci, ktoré narušujú môj denný režim.",
-			"Rád/a sa ocitnem v nepredvídateľných situáciách (rozveselia ma, aktivujú).",
-			"Cítim sa nepríjemne, ak nie sú jasné pravidlá určitej situácie."
+			"Nevadia mi veci, ktoré narušujú môj denný režim."
 		]
 	},
 	"rei" : {
 		"description" : "Prečítajte si pozorne každé z nasledujúcich tvrdení a posúďte, nakoľko s nimi súhlasíte - podľa vašej mienky, postojov a skúseností. Na tieto otázky neexistujú \"dobré\" ani \"zlé\" odpovede. Odpovedajte preto úprimne podľa nasledovnej 6-bodovej škály:",
 		"questions" : [
 			"Pokúšam sa vyhýbať situáciám, ktoré vyžadujú náročné rozmýšľanie.",
-			"Rád/a sa spolieham na moje intuitívne pocity.",
-			"Nie som až taký/á dobrý/á v riešení komplikovaných problémov."
+			"Rád/a sa spolieham na moje intuitívne pocity."
 		],
 		"negative" : [0,2,3,6,8,12,14,16,17,19,20,22,23,25,27,31,33,34,39]
 	}

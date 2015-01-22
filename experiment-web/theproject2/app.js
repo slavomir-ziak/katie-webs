@@ -32,81 +32,46 @@ app.controller('QuestionsCtrl', [
 	'$scope', 'Questions',
 	function($scope, Questions) {
 		var audio;
-		var sections = ["startPage", "demography", "framing", "startInstr", "start", "pns", "rei", "submit"];
+		var sections = ["startPage", "demography", "framing", "pns", "rei", "submit"]; // velten, panas, start
 		$scope.questions = Questions.get();
 		$scope.currentSection = "startPage";
 		$scope.startAnswers = [];
 		$scope.pnsAnswers = [];
 		$scope.reiAnswers = [];
+		$scope.framingAnswers = [];
 
 		$scope.showSection = function(section) {
 			$scope.currentSection = section;
 			$scope["show" + section] && $scope["show" + section]();
 		};
 
-		$scope.showvelten = function() {
-			var a = Math.random();
-			$scope.affection = a > 0.5 ? "positive" : "negative";
-			var quotes = $scope.questions.velten[$scope.affection];
-			$scope.veltenQuote = quotes[0];
-			$scope.veltenIndex = 0;
-			watchBlur2();
-		};
+		var framingStart;
 
-		$scope.nextVeltenQuote = function() {
-			$scope.veltenIndex++;
-			if ($scope.veltenIndex == 1) {
-				$scope.audio = new Audio($scope.affection + ".mp3");
-				$scope.audio.play();
-			}
-			if ($scope.veltenIndex >= $scope.questions.velten[$scope.affection].length) {
-				$scope.audio.pause();
-				$scope.showSection("panas");
-			} else {
-				$scope.veltenQuote = $scope.questions.velten[$scope.affection][$scope.veltenIndex];
-			}
-		};
-
-		var framingPosStart, framingPosDuration, framingNegStart, framingNegDuration;
 		$scope.showframing = function() {
 			$scope.currentFrm = 0;
-			framingPosStart = new Date().getTime();
+			framingStart = new Date().getTime();
 		};
 
-		$scope.negFraming = function() {
-			framingNegStart = new Date().getTime();
-			framingPosDuration = framingNegStart - framingPosStart;
-			$scope.framing = 2;	
-		};
-
-		var startTime;
-		$scope.showstart = function() {
-			$scope.currentQuestion = 0;	
-			startTime = new Date().getTime();
-			framingNegDuration = startTime - framingNegStart;
-		};
-		$scope.vote = function(index, color) {
-			$scope.startAnswers.push({
-				time : new Date().getTime() - startTime,
-				color : color,
-				correct : color == $scope.questions.start[index].color
+		$scope.nextFraming = function(index, answer) {
+			
+			$scope.framingAnswers.push({
+				time : new Date().getTime() - framingStart,
+				answer : answer
 			});
-			startTime = new Date().getTime();
-			if (index == $scope.questions.start.length - 1) {
-				$scope.showSection("pns");
-			} else {
-				$scope.currentQuestion = index + 1;	
-			}
-		};
 
-		$scope.nextFraming = function(index, form) {
-			$scope.currentFrm = index + 1;	
-			console.log(form);
+			framingStart = new Date().getTime();
+			console.log(index+ ":" + answer);
+
+			if (index == $scope.questions.framing.length - 1) {
+				$scope.showSection("pns");
+				console.log($scope.framingAnswers);
+			} else {
+				$scope.currentFrm = index + 1;	
+			}
 		};
 
 		var data;
 		$scope.showsubmit = function() {
-			//			console.log($scope); 1,4,5,10
 
 			$scope.pnsAnswers[4] = (7 - $scope.pnsAnswers[4]) + "";
 			$scope.pnsAnswers[1] = (7 - $scope.pnsAnswers[1]) + "";
@@ -119,18 +84,12 @@ app.controller('QuestionsCtrl', [
 			}
 
 			data = {
-				identifier: $scope.identifier,
 				age: $scope.age,
 				sex: $scope.sex,
 				practise: $scope.practise,
-				affection: $scope.affection,
-
-				framingPosDuration : framingPosDuration,
-				framingPositive : $scope.framingPositive,
-				framingNegDuration : framingNegDuration,
-				framingNegative : $scope.framingNegative,
-
-				startAnswers : $scope.startAnswers,
+				jobName: $scope.jobName,
+				
+				framingAnswers : $scope.framingAnswers,
 				pnsAnswers : $scope.pnsAnswers,
 				reiAnswers : $scope.reiAnswers
 			};
@@ -158,14 +117,17 @@ app.controller('QuestionsCtrl', [
 			//	rfs.call(el, Element.ALLOW_KEYBOARD_INPUT);
 			}
 
-			$scope.identifier = Math.round(Math.random() * 1000000);
-
 			$scope.showSection("demography");
 
 			//			window.onbeforeunload = function() {
 			//				return "adasd";
 			//			}
 		};
+		
+		function davajBodky(){
+			bodky = document.getElementById("bodky");
+			bodky.innerText = bodky.innerText + " .";
+		}
 
 		function sendResults() {
             var serializedHeader = serializeHeader(data);
@@ -175,69 +137,68 @@ app.controller('QuestionsCtrl', [
 			console.log(serializedData);
 			var content = serializedHeader+"\n\r"+serializedData;
 
-			var blob = new Blob([ content ], { type: "text/xml"});
-			var params = '{"auth":{"key":"9b1e93f05af411e481a62561be869cb8"},"template_id": "dc003a405af411e49922a70ffbc4fd6d"}';
-			var signature = '{"auth":{"key":"9b1e93f05af411e481a62561be869cb8"},"template_id":"dc003a405af411e49922a70ffbc4fd6d"}';
+			var blob = new Blob([ content ], { type: "text/csv"});
+
+			var params = '{"auth":{"expires": "2015/10/19 09:01:20+00:00","key":"9b1e93f05af411e481a62561be869cb8"},"template_id": "dc003a405af411e49922a70ffbc4fd6d"}';
+			var signature = null;
 
 			var transloadit = new TransloaditXhr({
 			   params: params,
 			   signature: signature,
 
 			   successCb: function(fileUrl) {
-			           alert("Dáta úspešne odoslané.");
+					alert("Dáta úspešne odoslané.");
+					window.clearInterval(bodkyTimer);
+					bodky = document.getElementById("bodky");
+					bodky.innerText = bodky.innerText + " hotovo. Môžete zatvoriť okno.";
 			   },
 
 			   errorCb: function(error) {
-			           alert("Pri odosielaní dát nastal problém:"+error);
+			          alert("Pri odosielaní dát nastal problém:"+error);
 			   }
 			});
-
+			var bodkyTimer = setInterval(davajBodky, 700);
 			transloadit.uploadFile(blob);
 
 		}
 
-
-		function serializeData(data) {
+		function serializeHeader(data) {
 			var sa = [];
-			sa.push(data.age,data.sex,data.practise);
-			Array.prototype.push.apply(sa,data.panas);
-			sa.push(data.framingPosDuration, data.framingPositive, data.framingNegDuration, data.framingNegative);
-			for (var i = 0; i < data.startAnswers.length; i++) {
-				var result = data.startAnswers[i];
-				sa.push(result.time,result.color,result.correct);
+			sa.push("martonova", "vek", "pohlavie", "roky praxe", "povolanie");
+
+			for (var i = 1; i < data.framingAnswers.length+1; i++) {
+				sa.push("frmOdpoved_"+i);
+				sa.push("frmCas_"+i);
 			}
-			Array.prototype.push.apply(sa,data.pnsAnswers);
-			Array.prototype.push.apply(sa,data.reiAnswers);
-			sa.push(data.identifier, data.affection);
+
+			for (var i = 1; i < data.pnsAnswers.length+1; i++) {
+				sa.push("PNS"+i);
+			}
+
+			for (var i = 1; i < data.reiAnswers.length+1; i++) {
+				sa.push("REI"+i);
+			}
 
 			return sa.join(";");
 		}
 
-       function serializeHeader(data) {
-           var sa = [];
-           sa.push("vek", "pohlavie", "roky praxe");
-           
-           for (var i = 1; i < data.panas.length+1; i++) {
-                   sa.push("panas"+i);
-           }
+		function serializeData(data) {
+			var sa = [];
 
-           sa.push("framingpoz_cas","framing pozitivny","framingneg_cas","framing negativny");
-           
-           for (var i = 1; i < data.startAnswers.length+1; i++) {
-                   sa.push(i+"cas",i+"odpoved",i+"vyhodnotenie");
-           }
-           for (var i = 1; i < data.pnsAnswers.length+1; i++) {
-                   sa.push("PNS"+i);
-           }
-           for (var i = 1; i < data.reiAnswers.length+1; i++) {
-                   sa.push("REI"+i);
-           }
+			sa.push("martonova", data.age, data.sex, data.practise, data.jobName);
 
-           sa.push("cislelny kod", "nalada");
+			for (var i = 0; i < data.framingAnswers.length; i++) {
+				var result = data.framingAnswers[i];
+				sa.push(result.answer, result.time);
+			}
 
-           return sa.join(";");
-       }
+			Array.prototype.push.apply(sa,data.pnsAnswers);
+			Array.prototype.push.apply(sa,data.reiAnswers);
+			
+			return sa.join(";");
+		}
 
+      
 	}
 ]);
 

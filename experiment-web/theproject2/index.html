@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="questionnaire">
 	<head>
-		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
 		<title>Questionnaire</title>
 		<link rel="stylesheet" href="./app.css" />
 	</head>
@@ -14,7 +14,7 @@
 				<p>moje meno je Gabriela Mártonová a som študentkou 3. ročníka bakalárskeho štúdia odboru sociálna a pracovná psychológia na Fakulte sociálnych a ekonomických vied Univerzity Komenského. 
 					Obraciam sa na Vás s prosbou o vyplnenie dotazníka, ktorý je súčasťou mnou realizovaného výskumu v rámci bakalárskej práce.
 					Vo svojej práci skúmam rozdiely v rozhodovaní príslušníkov pomáhajúcich profesií a to najmä záchranárov, s rozličným štýlom poznávania (rozličnou potrebou kognitívnej štruktúry) a spracovávania informácií (kognitívnym štýlom).
-					Účasť na výskume je anonymná a dobrovoľná. Získané údaje budú použité len pre potreby tohto výskumu. Vyplnením dotazníka vyjadrujete súhlas so spracovaním údajov podľa vyššie uvedených podmienok. Vyplnenie dotazníka zaberie približne 15 minút Vášho času. V prípade, ak by ste mali nejaké otázky, alebo by ste mali záujem o celkové výsledky výskumu, ochotne Vám ich poskytnem na emailovej adrese: gabriela.mar93@gmail.com.
+					Účasť na výskume je anonymná a dobrovoľná. Získané údaje budú použité len pre potreby tohto výskumu. Vyplnením dotazníka vyjadrujete súhlas so spracovaním údajov podľa vyššie uvedených podmienok. Vyplnenie dotazníka zaberie približne 10 minút Vášho času. V prípade, ak by ste mali nejaké otázky, alebo by ste mali záujem o celkové výsledky výskumu, ochotne Vám ich poskytnem na emailovej adrese: gabriela.mar93@gmail.com.
 					</p>
 				<p>Veľmi pekne Vám ďakujem za ochotu!</p>
 				
@@ -27,8 +27,8 @@
 						<li>Prosím vyplňte  nasledujúce demografické údaje:</li>
 						<li><label class="demoLabel"><span>Vek:</span><input type="number" ng-model="age" required="required" /></label></li>
 						<li><label class="demoLabel"><span>Pohlavie:</span></label><label><input type="radio" name="sex" value="F" ng-model="sex" required="required" />Žena</label><label><input type="radio" name="sex" value="M" ng-model="sex" required="required"/>Muž</label></li>
-						<li><label class="demoLabel"><span>Počet rokov praxe:</span><input type="number" name="practiseYears" required="required" ng-model="practise" /></label></li>
 						<li><label class="demoLabel"><span>Povolanie:</span><input type="text" name="jobName" required="required" ng-model="jobName" /></label></li>
+						<li><label class="demoLabel"><span>Počet rokov praxe:</span><input type="number" name="practiseYears" required="required" ng-model="practise" /></label></li>
 					</ul>
 					<input type="button" value="Ďalej" ng-click="showSection('framing')" ng-disabled="demographyForm.$invalid" />
 				</form>
@@ -40,56 +40,13 @@
 					<p>
 						{{frm.description}}
 					</p>
-					<form name="framingPosForm">
+					<form name="framingForm">
 						<ol>
 							<li><label><input type="radio" name="framingPos" value="a" ng-model="framingPositive" required="required">{{frm.optionA}}</label></li>
 							<li><label><input type="radio" name="framingPos" value="b" ng-model="framingPositive" required="required">{{frm.optionB}}</label></li>
 						</ol>
-						<input type="button" value="Ďalej" ng-click="nextFraming($index, framingPosForm)" ng-disabled="framingPosForm.$invalid" />
+						<input type="button" value="Ďalej" ng-click="nextFraming($index, framingForm.framingPos.$modelValue)" ng-disabled="framingForm.$invalid" />
 					</form>
-				</div>
-				<!--
-				<div ng-show="framing==2">
-					<p>
-						{{questions.framing[1].description}}
-					</p>
-					<form name="framingNegForm">
-						<ol>
-							<li><label><input type="radio" name="framingTwo" value="a" ng-model="framingNegative" required="required">{{questions.framing[1].optionA}}</label></li>
-							<li><label><input type="radio" name="framingTwo" value="b" ng-model="framingNegative" required="required">{{questions.framing[1].optionB}}</label></li>
-						</ol>
-						<input type="button" value="Ďalej" ng-click="showSection('startInstr')" ng-disabled="framingNegForm.$invalid" />
-					</form>
-				</div>
-				-->
-			</div>
-			<div ng-show="currentSection=='startInstr'">
-				<p>
-					Vašou nasledujúcou úlohou bude zatriediť pacientov nehody hromadného postihnutia osôb podľa systému START.
-				</p>
-				<input type="button" value="Ďalej" ng-click="showSection('start')" />
-			</div>
-			<div ng-show="currentSection=='start'">
-				<div ng-repeat="question in questions.start" ng-show="currentQuestion==$index" >
-					<dl>
-						<dt>Pohyblivosť:</dt>
-						<dd>{{question.move}}</dd>
-						<dt>Df/min.:</dt>
-						<dd>{{question.df}}</dd>
-						<dt>Kapil. návrat/sek:</dt>
-						<dd>{{question.kapil}}</dd>
-						<dt>Vedomie:</dt>
-						<dd>{{question.consc}}</dd>
-						<dt>Poranenie:</dt>
-						<dd>{{question.injury}}</dd>
-					</dl>
-					<p>Priorita:</p>
-					<div>
-						<span ng-click="vote($index,'green')" class="green"></span>
-						<span ng-click="vote($index,'yellow')" class="yellow"></span>
-						<span ng-click="vote($index,'red')" class="red"></span>
-						<span ng-click="vote($index,'black')" class="black"></span>
-					</div>
 				</div>
 			</div>
 			<div ng-show="currentSection=='pns'">
@@ -210,9 +167,11 @@
 			</div>
 			<div ng-show="currentSection=='submit'">
 				<p>
-					Ďakujeme za spoluprácu. Váš identifikačný kód je {{identifier}}.
+					Ďakujeme za spoluprácu. 
 				</p>
-				<input type="button" value="Dokončiť" />
+				<p>
+				        Počkajte prosím, kým budú dáta zaslané na server. <span id="bodky"></span>
+				</p>
 			</div>
 
 		</div>

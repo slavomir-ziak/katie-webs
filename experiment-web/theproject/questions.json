@@ -203,7 +203,7 @@
 		{"move":"chodí","df":"16","kapil":"1","consc":"orientovany","injury":"bez por","color":"green"},
 		{"move":"leží","df":"25","kapil":"3","consc":"dezorient","injury":"bez por","color":"red"},
 		{"move":"sedí","df":"26","kapil":"1.5","consc":"orientovany","injury":"fr. LDK","color":"yellow"},
-		{"move":"leží","df":"25","kapil":"3","consc":"dezorient","injury":"popáleniny DK","color":"green"},
+		{"move":"leží","df":"25","kapil":"3","consc":"dezorient","injury":"popáleniny DK","color":"red"},
 		{"move":"leží","df":"0","kapil":"0","consc":"neodpovedá","injury":"krvná strata","color":"black"},
 		{"move":"sedí","df":"26","kapil":"1.5","consc":"orientovany","injury":"fr. LDK","color":"yellow"},
 		{"move":"chodí","df":"16","kapil":"1","consc":"orientovany","injury":"exkoriacie","color":"green"},

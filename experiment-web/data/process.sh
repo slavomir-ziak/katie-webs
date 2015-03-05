@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rm martonova/*
 for f in $(grep -r martonova _original/ | cut -d ":" -f1 | sort | uniq) ; do cp $f martonova/$RANDOM; done
 
@@ -6,6 +8,12 @@ for f in $(grep -r nalada _original/ | cut -d ":" -f1 | sort | uniq) ; do cp $f 
 
 # has to return 1 line
 owner=martonova
+
+for f in $(find $owner -type f) ; do cat $f | head -1; done | sort | uniq > ${owner}_data.csv
+
+for f in $(find $owner -type f) ; do cat $f | tail -1 >> ${owner}_data.csv; done 
+
+owner=katie
 
 for f in $(find $owner -type f) ; do cat $f | head -1; done | sort | uniq > ${owner}_data.csv
 

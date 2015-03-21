@@ -27,5 +27,12 @@ done
 
 unset IFS
 
-for f in $("cas_black.txt cas_black2.txt  cas_green.txt  cas_red.txt  cas_yellow.txt  katie_data_filtered.csv  process2.js  split.sh  temp.txt  vyhodnotenie_black.txt  vyhodnotenie_green.txt  vyhodnotenie_red.txt  vyhodnotenie_yellow.txt") ; do echo $f; done;
-cat cas_black.txt | cut -d ';' -f 2- > cas_black2.txt
+cat cas_black.txt  | cut -d ';' -f 2- >  cas_black.csv
+cat cas_green.txt  | cut -d ';' -f 2- > cas_green.csv
+cat cas_red.txt   | cut -d ';' -f 2- > cas_red.csv
+cat cas_yellow.txt   | cut -d ';' -f 2- > cas_yellow.csv
+cat vyhodnotenie_black.txt   | cut -d ';' -f 2- > vyhodnotenie_black.csv
+cat vyhodnotenie_green.txt   | cut -d ';' -f 2- > vyhodnotenie_green.csv
+cat vyhodnotenie_red.txt   | cut -d ';' -f 2- > vyhodnotenie_red.csv
+cat vyhodnotenie_yellow.txt  | cut -d ';' -f 2- > vyhodnotenie_yellow.csv
+

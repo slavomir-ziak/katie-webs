@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html ng-app="questionnaire">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+		<title>Questionnaire</title>
+		<link rel="stylesheet" href="./app.css" />
+	</head>
+	<body>
+		<div ng-controller="QuestionsCtrl" style="display:none" id="mainWrapper">
+			<h1>Dotazník</h1>
+			<div id="startPage" ng-show="currentSection=='startPage'">
+<p>
+					Milí respondent,
+					touto cestou by sme Vás chceli poprosiť o vyplnenie nasledujúceho dotazník a série úloh, ktoré sú súčasťou grantového riešenia: 
+				</p>
+				<p> 
+					<strong>„Rozhodovanie v emočne náročných situáciách: Výskum makrokognícií a emócií v paradigme naturalistického rozhodovania. VEGA 2/0080/14“.</strong>
+				</p>
+				<p>
+					Účasť je dobrovoľná a anonymná.	Prosím venujte dostatočnú pozornosť čítaniu inštrukcií.
+				</p>
+				<p>
+					Dotazník je potrebné vyplniť bez prerušovania. Pri opustení okna, napríklad prepnutím sa do iného, bude vypĺňanie dotazníku ukončené.
+				</p>
+				<input ng-click="startQuestions()" type="button" value="Začať" />
+			</div>
+			<div ng-show="currentSection=='demography'">
+				<h2>Demografia</h2>
+				<form name="demographyForm" class="css-form">
+					<ul>
+						<li>Prosím vyplňte  nasledujúce demografické údaje:</li>
+						<li><label class="demoLabel"><span>Vek:</span><input type="number" ng-model="age" required="required" /></label></li>
+						<li><label class="demoLabel"><span>Pohlavie:</span></label><label><input type="radio" name="sex" value="F" ng-model="sex" required="required" />Žena</label><label><input type="radio" name="sex" value="M" ng-model="sex" required="required"/>Muž</label></li>
+						<li><label class="demoLabel"><span>Povolanie/Študovaný odbor:</span><input type="text" name="jobName" required="required" ng-model="jobName" /></label></li>
+						<li><label class="demoLabel"><span>Počet rokov praxe:</span><input type="number" name="practiseYears" required="required" ng-model="practise" /></label></li>
+					</ul>
+					<input type="button" value="Ďalej" ng-click="showSection('framing')" ng-disabled="demographyForm.$invalid" />
+				</form>
+			</div>
+			
+			<div ng-show="currentSection=='framing'">
+				<div ng-repeat="frm in questions.framing" ng-show="currentFrm==$index" >
+				
+					<p>
+						{{frm.description}}
+					</p>
+					<form name="framingForm">
+						<ol>
+							<li><label><input type="radio" name="framingPos" value="a" ng-model="framingPositive" required="required">{{frm.optionA}}</label></li>
+							<li><label><input type="radio" name="framingPos" value="b" ng-model="framingPositive" required="required">{{frm.optionB}}</label></li>
+						</ol>
+						<input type="button" value="Ďalej" ng-click="nextFraming($index, framingForm.framingPos.$modelValue)" ng-disabled="framingForm.$invalid" />
+					</form>
+				</div>
+			</div>
+			<div ng-show="currentSection=='pns'">
+				<p>
+					{{questions.pns.description}}
+				</p>
+				<table>
+					<tr>
+						<th>1</th>
+						<th>2</th>
+						<th>3</th>
+						<th>4</th>
+						<th>5</th>
+						<th>6</th>
+					</tr>
+					<tr>
+						<td>Vôbec nesúhlasím</td>
+						<td>Stredne nesúhlasím</td>
+						<td>Mierne nesúhlasím</td>
+						<td>Mierne súhlasím</td>
+						<td>Stredne súhlasím</td>
+						<td>Plne súhlasím</td>
+					</tr>
+				</table>
+				<form name="pnsForm">
+					<table>
+						<tr>
+							<th></th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+							<th>4</th>
+							<th>5</th>
+							<th>6</th>
+						</tr>
+						<tr ng-repeat="question in questions.pns.questions" >
+							<td>{{question}}</td>
+							<td><input type="radio" value="1" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="2" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="3" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="4" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="5" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="6" name="pns_{{$index}}" ng-model="$parent.pnsAnswers[$index]" required="required" /></td>
+						</tr>
+					</table>
+					<input type="button" value="Ďalej" ng-click="showSection('rei')" ng-disabled="pnsForm.$invalid" />
+				</form>
+			</div>
+			<!--
+<div ng-show="currentSection=='mdmq'">
+<p>
+{{questions.mdmq.description}}
+</p>
+<form name="mdmqForm">
+<table>
+<tr>
+<th></th>
+<th>Pre mňa neplatí</th>
+<th>Niekedy platí</th>
+<th>Pre mňa platí</th>
+</tr>
+<tr ng-repeat="question in questions.mdmq.questions" >
+<td>{{question}}</td>
+<td><input type="radio" value="1" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
+<td><input type="radio" value="2" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
+<td><input type="radio" value="3" name="mdmq_{{$index}}" ng-model="$parent.mdmqAnswers[$index]" required="required" /></td>
+</tr>
+</table>
+<input type="button" value="Ďalej" ng-click="showSection('submit')" ng-disabled="mdmqForm.$invalid" />
+</form>
+</div>
+-->
+			<div ng-show="currentSection=='rei'">
+				<p>
+					{{questions.rei.description}}
+				</p>
+				<table>
+					<tr>
+						<th>1</th>
+						<th>2</th>
+						<th>3</th>
+						<th>4</th>
+						<th>5</th>
+						<th>6</th>
+					</tr>
+					<tr>
+						<td>Vôbec nesúhlasím</td>
+						<td>Stredne nesúhlasím</td>
+						<td>Mierne nesúhlasím</td>
+						<td>Mierne súhlasím</td>
+						<td>Stredne súhlasím</td>
+						<td>Plne súhlasím</td>
+					</tr>
+				</table>
+				<form name="reiForm">
+					<table>
+						<tr>
+							<th></th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+							<th>4</th>
+							<th>5</th>
+							<th>6</th>
+						</tr>
+						<tr ng-repeat="question in questions.rei.questions" >
+							<td>{{question}}</td>
+							<td><input type="radio" value="1" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="2" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="3" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="4" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="5" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+							<td><input type="radio" value="6" name="rei_{{$index}}" ng-model="$parent.reiAnswers[$index]" required="required" /></td>
+						</tr>
+					</table>
+					<input type="button" value="Ďalej" ng-click="showSection('submit')" ng-disabled="reiForm.$invalid" />
+				</form>
+			</div>
+			<div ng-show="currentSection=='submit'">
+				<p>
+					Ďakujeme za spoluprácu. 
+				</p>
+				<p>
+				        Počkajte prosím, kým budú dáta zaslané na server. <span id="bodky"></span>
+				</p>
+			</div>
+
+		</div>
+		<script>
+			if (!document.addEventListener) {
+				alert("Táto verzia prehliadača nie je podporovaná. Aplikácia pravdepodobne nebude správne fungovať. Odporúčame použiť novší prehliadač.");
+			}
+		</script>
+		<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-resource/angular-resource.js"></script>
+		<!-- upload related -->
+		<script src="//assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
+		<script type="text/javascript" src="transloadit_xhr.js" ></script>
+		<!-- /upload related -->
+		<script src="app.js"></script>
+	</body>		
+</html>

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 rm *txt
+#rm *csv
 
 IFS=$'\n\r'
 
@@ -16,13 +17,17 @@ for l in $(node process2.js); do
 	
 	if [[ "$(cat $file 2> /dev/null | wc -l)" == "      0" ]] 
 	then 
+	echo "" > $file
+fi
 
 
-	cat katie_data_filtered.csv | cut -d ';' -f $column > temp.txt
+	cat $1 | cut -d ';' -f $column > temp.txt
 
 	paste -d ';' $file temp.txt > temp2.txt
 
 	mv temp2.txt $file
+
+
 done
 
 unset IFS

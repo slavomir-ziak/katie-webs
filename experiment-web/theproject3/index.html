@@ -34,6 +34,8 @@
 						<li><label class="demoLabel"><span>Pohlavie:</span></label><label><input type="radio" name="sex" value="F" ng-model="sex" required="required" />Žena</label><label><input type="radio" name="sex" value="M" ng-model="sex" required="required"/>Muž</label></li>
 						<li><label class="demoLabel"><span>Povolanie/Študovaný odbor:</span><input type="text" name="jobName" required="required" ng-model="jobName" /></label></li>
 						<li><label class="demoLabel"><span>Počet rokov praxe:</span><input type="number" name="practiseYears" required="required" ng-model="practise" /></label></li>
+
+						<li><label class="demoLabel"><span>Ak ste z firmy Falck a zúčastnili ste sa predchádzajúceho výskumu, zadajte kód, ktorý Vám bol pridelený (ak ste sa výskumu nezúčastnili, nechajte pole prázdne):</span><input type="number" name="falckCode" ng-model="falckCode" /></label></li>
 					</ul>
 					<input type="button" value="Ďalej" ng-click="showSection('framing')" ng-disabled="demographyForm.$invalid" />
 				</form>

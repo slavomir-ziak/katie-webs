@@ -1,85 +1,55 @@
 {
 	
-	"framing" : [{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 60 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb, ktorých presné dôsledky sú známe. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A zomrie 40 ľudí.",
-  "optionB": "Pri alternatíve B je 1/3 pravdepodobnosť, že nikto nezomrie a 2/3 pravdepodobnosť, že zomrie 60 ľudí." }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 90 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb, ktorých presné dôsledky sú známe. Zvoľte jednu z týchto stratégií :",
-  "optionA": "Pri alternatíve A sa zachráni 30 ľudí.",
-  "optionB": "Pri alternatíve B je 1/3 pravdepodobnosť, že sa zachráni 90 ľudí a 2/3 pravdepodobnosť, že sa nezachráni nikto." }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 90 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A zomrie 81 ľudí",
-  "optionB": "Pri alternatíve B je 90% pravdepodobnosť, že nikto nezomrie a 10% pravdepodobnosť, že zomrie 90 ľudí" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 130 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A sa zachráni 117 ľudí",
-  "optionB": "Pri alternatíve B je 90% pravdepodobnosť, že sa zachráni 130 ľudí a 10% pravdepodobnosť, že sa nezachráni nikto" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 60 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A zomrie 30 ľudí",
-  "optionB": "Pri alternatíve B je 50% pravdepodobnosť, že nikto nezomrie a 50% pravdepodobnosť, že zomrie 60 ľudí" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 150 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A sa zachráni 75 ľudí",
-  "optionB": "Pri alternatíve B je 50% pravdepodobnosť, že sa zachráni 150 ľudí a 50% pravdepodobnosť, že sa nezachráni nikto" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 60 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A zomrie 36 ľudí",
-  "optionB": "Pri alternatíve B je 60% pravdepodobnosť, že nikto nezomrie a 40% pravdepodobnosť, že zomrie 60 ľudí" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 180 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A sa zachráni 108 ľudí",
-  "optionB": "Pri alternatíve B je 60% pravdepodobnosť, že sa zachráni 180 ľudí a 40% pravdepodobnosť, že sa nezachráni nikto" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 600 zranených ľudí. Boli vytvorené ve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A zomrie 540 ľudí",
-  "optionB": "Pri alternatíve B je 10% pravdepodobnosť, že nikto nezomrie a 90% pravdepodobnosť, že zomrie 600 ľudí" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 50 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií :",
-  "optionA": "Pri alternatíve A sa zachráni 5 ľudí",
-  "optionB": "Pri alternatíve B je 10% pravdepodobnosť, že sa zachráni 50 ľudí a 90% pravdepodobnosť, že sa nezachráni nikto" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 120 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A zomrie 96 ľudí",
-  "optionB": "Pri alternatíve B je 80% pravdepodobnosť, že nikto nezomrie a 20% pravdepodobnosť, že zomrie 120 ľudí" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 200 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A sa zachráni 160 ľudí",
-  "optionB": "Pri alternatíve B je 80% pravdepodobnosť, že sa zachráni 200 ľudí a 20% pravdepodobnosť, že sa nezachráni nikto" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 240 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A zomrie 48 ľudí",
-  "optionB": "Pri alternatíve B je 20% pravdepodobnosť, že nikto nezomrie a 80% pravdepodobnosť, že zomrie 240 ľudí" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 80 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A sa zachráni 16 ľudí",
-  "optionB": "Pri alternatíve B je 20% pravdepodobnosť, že sa zachráni 80 ľudí a 80% pravdepodobnosť, že sa nezachráni nikto" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 270 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A zomrie 90 ľudí",
-  "optionB": "Pri alternatíve B je 30% pravdepodobnosť, že nikto nezomrie a 70% pravdepodobnosť, že zomrie 270 ľudí" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 90 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A sa zachráni 30 ľudí",
-  "optionB": "Pri alternatíve B je 30% pravdepodobnosť, že sa zachráni 90 ľudí a 70% pravdepodobnosť, že sa nezachráni nikto" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 190 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A zomrie 133 ľudí",
-  "optionB": "Pri alternatíve B je 70% pravdepodobnosť, že nikto nezomrie a 30% pravdepodobnosť, že zomrie 190 ľudí" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 210 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A sa zachráni 147 ľudí",
-  "optionB": "Pri alternatíve B je 70% pravdepodobnosť, že sa zachráni 210 ľudí a 30% pravdepodobnosť, že sa nezachráni nikto" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 120 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A zomrie 48 ľudí",
-  "optionB": "Pri alternatíve B je 40% pravdepodobnosť, že nikto nezomrie a 60% pravdepodobnosť, že zomrie 120 ľudí" }
-,
-{ "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 160 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
-  "optionA": "Pri alternatíve A sa zachráni 64 ľudí",
-  "optionB": "Pri alternatíve B je 40% pravdepodobnosť, že sa zachráni 160 ľudí a 60% pravdepodobnosť, že sa nezachráni nikto" }
-],
+  "framing" : [
+	    {
+	        "name": "neg_60",
+	        "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 60 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
+	        "optionA": "Pri alternatíve A zomrie 24 ľudí",
+	        "optionB": "Pri alternatíve B je 3/5 pravdepodobnosť, že nikto nezomrie a 2/5 pravdepodobnosť, že zomrie 60 ľudí"
+	    },
+	    {
+	        "name": "poz_60",
+	        "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 180 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
+	        "optionA": "Pri alternatíve A sa zachráni 108 ľudí",
+	        "optionB": "Pri alternatíve B je 3/5 pravdepodobnosť, že sa zachráni 180 ľudí a 2/5 pravdepodobnosť, že sa nezachráni nikto"
+	    },
+	    {
+	        "name": "neg_80",
+	        "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 120 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
+	        "optionA": "Pri alternatíve A zomrie 24 ľudí",
+	        "optionB": "Pri alternatíve B je 4/5 pravdepodobnosť, že nikto nezomrie a 1/5 pravdepodobnosť, že zomrie 120 ľudí"
+	    },
+	    {
+	        "name": "poz_80",
+	        "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 200 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
+	        "optionA": "Pri alternatíve A sa zachráni 160 ľudí",
+	        "optionB": "Pri alternatíve B je 4/5 pravdepodobnosť, že sa zachráni 200 ľudí a 1/5 pravdepodobnosť, že sa nezachráni nikto"
+	    },
+	    {
+	        "name": "neg_20",
+	        "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 240 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
+	        "optionA": "Pri alternatíve A zomrie 192 ľudí",
+	        "optionB": "Pri alternatíve B je 1/5 pravdepodobnosť, že nikto nezomrie a 4/5 pravdepodobnosť, že zomrie 240 ľudí"
+	    },
+	    {
+	        "name": "poz_20",
+	        "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 80 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
+	        "optionA": "Pri alternatíve A sa zachráni 16 ľudí",
+	        "optionB": "Pri alternatíve B je 1/5 pravdepodobnosť, že sa zachráni 80 ľudí a 4/5 pravdepodobnosť, že sa nezachráni nikto"
+	    },
+	    {
+	        "name": "neg_40",
+	        "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 120 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
+	        "optionA": "Pri alternatíve A zomrie 72 ľudí",
+	        "optionB": "Pri alternatíve B je 2/5 pravdepodobnosť, že nikto nezomrie a 3/5 pravdepodobnosť, že zomrie 120 ľudí"
+	    },
+	    {
+	        "name": "poz_40",
+	        "description": "Stala sa nehoda hromadného postihnutia osôb, pri ktorej je na mieste činu 160 zranených ľudí. Boli vytvorené dve stratégie na záchranu týchto osôb. Zvoľte jednu z týchto stratégií:",
+	        "optionA": "Pri alternatíve A sa zachráni 64 ľudí",
+	        "optionB": "Pri alternatíve B je 2/5 pravdepodobnosť, že sa zachráni 160 ľudí a 3/5 pravdepodobnosť, že sa nezachráni nikto"
+	    }
+	],
 	"pns" : {
 		"description" : "Prečítajte si pozorne každé z nasledujúcich tvrdení a posúďte, nakoľko s nimi súhlasíte - podľa vašej mienky, postojov a skúseností. Na tieto otázky neexistujú \"dobré\" ani \"zlé\" odpovede. Odpovedajte preto úprimne a rýchlo podľa nasledovnej 6-bodovej škály:",
 		"questions" : [

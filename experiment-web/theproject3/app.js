@@ -32,7 +32,7 @@ app.controller('QuestionsCtrl', [
 	'$scope', 'Questions',
 	function($scope, Questions) {
 		var audio;
-		var sections = ["startPage", "demography", "framing", "pns", "rei", "submit"]; // velten, panas, start
+		//var sections = ["startPage", "demography", "framing", "pns", "rei", "submit"]; // velten, panas, start
 		$scope.questions = Questions.get();
 		$scope.currentSection = "startPage";
 		$scope.startAnswers = [];
@@ -41,6 +41,8 @@ app.controller('QuestionsCtrl', [
 		$scope.framingAnswers = [];
 
 		$scope.showSection = function(section) {
+			console.log("showing: " + section);
+				
 			$scope.currentSection = section;
 			$scope["show" + section] && $scope["show" + section]();
 		};
@@ -48,6 +50,20 @@ app.controller('QuestionsCtrl', [
 		var framingStart;
 
 		$scope.showframing = function() {
+			$scope.framingOriginal = $scope.questions.framing.slice();
+
+			randomize($scope.questions.framing);
+
+			console.log("framing original names:");
+			for (var i=0; i< $scope.framingOriginal.length; i++) {
+				console.log($scope.framingOriginal[i].name);
+			}
+
+			console.log("framing randomized names:");
+			for (var i=0; i < $scope.questions.framing.length; i++) {
+				console.log($scope.questions.framing[i].name);
+			}
+
 			$scope.currentFrm = 0;
 			framingStart = new Date().getTime();
 		};
@@ -56,14 +72,19 @@ app.controller('QuestionsCtrl', [
 			
 			$scope.framingAnswers.push({
 				time : new Date().getTime() - framingStart,
-				answer : answer
+				answer : answer,
+				name: $scope.questions.framing[index].name
 			});
 
 			framingStart = new Date().getTime();
 			console.log(index+ ":" + answer);
 
 			if (index == $scope.questions.framing.length - 1) {
-				$scope.showSection("pns");
+				if ($scope.falckCode) {
+					$scope.showSection("submit");
+				} else {
+					$scope.showSection("pns");
+				}
 				console.log($scope.framingAnswers);
 			} else {
 				$scope.currentFrm = index + 1;	
@@ -88,6 +109,7 @@ app.controller('QuestionsCtrl', [
 				sex: $scope.sex,
 				practise: $scope.practise,
 				jobName: $scope.jobName,
+				falckCode: $scope.falckCode,
 				
 				framingAnswers : $scope.framingAnswers,
 				pnsAnswers : $scope.pnsAnswers,
@@ -164,19 +186,22 @@ app.controller('QuestionsCtrl', [
 
 		function serializeHeader(data) {
 			var sa = [];
-			sa.push("experiment2", "vek", "pohlavie", "roky praxe", "povolanie");
+			sa.push("experiment2", "vek", "pohlavie", "roky praxe", "povolanie", "falckCode");
 
-			for (var i = 1; i < data.framingAnswers.length+1; i++) {
-				sa.push("frmOdpoved_"+i);
-				sa.push("frmCas_"+i);
+			for (var i = 0; i < $scope.framingOriginal.length; i++) {
+				sa.push("frmOdpoved_"+$scope.framingOriginal[i].name);
+				sa.push("frmCas_"+$scope.framingOriginal[i].name);
 			}
 
-			for (var i = 1; i < data.pnsAnswers.length+1; i++) {
-				sa.push("PNS"+i);
-			}
+			if (!$scope.falckCode) {
+				
+				for (var i = 1; i < data.pnsAnswers.length+1; i++) {
+					sa.push("PNS"+i);
+				}
 
-			for (var i = 1; i < data.reiAnswers.length+1; i++) {
-				sa.push("REI"+i);
+				for (var i = 1; i < data.reiAnswers.length+1; i++) {
+					sa.push("REI"+i);
+				}
 			}
 
 			return sa.join(";");
@@ -185,17 +210,50 @@ app.controller('QuestionsCtrl', [
 		function serializeData(data) {
 			var sa = [];
 
-			sa.push("experiment2", data.age, data.sex, data.practise, data.jobName);
+			sa.push("experiment2", data.age, data.sex, data.practise, data.jobName, data.falckCode || "");
 
-			for (var i = 0; i < data.framingAnswers.length; i++) {
-				var result = data.framingAnswers[i];
-				sa.push(result.answer, result.time);
+			for (var j=0; j< $scope.framingOriginal.length; j++) {
+				var originalName = $scope.framingOriginal[j].name;
+				for (var i = 0; i < data.framingAnswers.length; i++) {
+					var result = data.framingAnswers[i];
+					if (originalName == result.name) {
+						sa.push(result.answer, result.time);
+					}
+				}
 			}
 
-			Array.prototype.push.apply(sa,data.pnsAnswers);
-			Array.prototype.push.apply(sa,data.reiAnswers);
+
+			if (!$scope.falckCode) {
+				Array.prototype.push.apply(sa,data.pnsAnswers);
+				Array.prototype.push.apply(sa,data.reiAnswers);
+			}
 			
 			return sa.join(";");
+		}
+
+
+		Array.prototype.swap = function (x,y) {
+		  var b = this[x];
+		  this[x] = this[y];
+		  this[y] = b;
+		  return this;
+		}
+
+		function randomize(array){
+			for (var i = 0; i < array.length*100; i++) {
+				var ind1 = getRandomInt(0, array.length-1);
+				var ind2 = getRandomInt(0, array.length-1);
+				//console.log(ind1+", "+ind2);
+				array.swap(ind1, ind2);
+			}
+		}
+
+		/**
+		 * Returns a random integer between min (inclusive) and max (inclusive)
+		 * Using Math.round() will give you a non-uniform distribution!
+		 */
+		function getRandomInt(min, max) {
+		    return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
 
       

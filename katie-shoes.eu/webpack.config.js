@@ -19,11 +19,11 @@ module.exports = {
       }
     ]
   },
-  plugins: [
+  /*plugins: [
     new uglifyJsPlugin({
       compress: {
         warnings: false
       }
     })
-  ]
+  ]*/
 };

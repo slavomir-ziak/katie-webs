@@ -2,9 +2,9 @@
 }
 
 .gallery-image {
-	width: 150px;
-	height: 150px;
 	border: 1px solid rgba(0, 0, 0, 0.37);
+	margin: 0 auto;
+	cursor: pointer;
 }
 
 .gallery-image img {
@@ -13,7 +13,7 @@
 	display: block;
 }
 
-.gallery-image a {
+.gallery-image-caption {
 	font-size: 13px;
 	font-style: italic;
 	text-overflow: ellipsis;
@@ -23,7 +23,22 @@
 	white-space: nowrap;
 }
 
-.ks-overlay {
+.gallery-button {
+	width: 135px;
+}
+
+.gallery-row {
+	margin-bottom: 15px;
+}
+
+
+@media (min-width: 1200px) {
+	.gallery-row {
+    	height: 260px;
+	}
+}
+
+.ks-carousel {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -40,23 +55,73 @@
 	position: relative;
 }
 
-.ks-test__prev {
+/*ks-test__prev, .ks-test__next*/
+
+.ks-test__prev, .ks-test__next {
 	position: absolute;
 	top: calc(50% - 15px);
-	left: 10%;
 	width: 30px;
 	height: 30px;
-	border: 1px solid red;
+    border-right: 3px solid white;
+    border-top: 3px solid white;
+    opacity: 0.5;
+	cursor: pointer;
+}
+
+.ks-test__prev {
+	left: 10%;
+    transform: rotate(225deg);
 }
 
 .ks-test__next {
-	position: absolute;
-	top: calc(50% - 15px);
 	right: 10%;
+    transform: rotate(45deg);
+}
+
+.ks-test__prev:hover:not([disabled]), .ks-test__next:hover:not([disabled]) {
+  	opacity: 1;
+}
+
+.ks-test__prev[disabled], .ks-test__next[disabled] {
+	cursor: default;
+}
+
+
+/*test__close*/
+
+.ks-test__close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
 	width: 30px;
 	height: 30px;
-	border: 1px solid red;
+    opacity: 0.5;
+	cursor: pointer;
 }
+
+.ks-test__close:hover {
+  	opacity: 1;
+}
+
+.ks-test__close:before, .ks-test__close:after {
+	position: absolute;
+	left: 15px;
+	content: ' ';
+	height: 40px;
+	width: 3px;
+	background-color: white;
+}
+
+.ks-test__close:before {
+  	transform: rotate(45deg);
+}
+
+.ks-test__close:after {
+  	transform: rotate(-45deg);
+}
+
+
+
 
 .ks-image {
 	max-height: 100%;
@@ -77,7 +142,6 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	border: 1px solid red;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.0) 75%, rgba(0, 0, 0, 0.6) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 

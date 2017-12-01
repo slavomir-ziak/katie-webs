@@ -4,21 +4,23 @@
   "description": "Hand painted shoes and bags.",
   "main": "main.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack-dev-server --open"
   },
   "dependencies": {
-      "react": "15.x",
-      "react-dom": "15.x",
-      "babel-loader": "7.x",
-      "babel-core": "6.x",
-      "style-loader": "0.18.x",
-      "css-loader": "0.28.x",
-      "babel-preset-es2015": "6.x",
-      "babel-preset-react": "6.x",
-      "webpack": "2.x",
-      "webpack-dev-server": "2.x",
-      "bootstrap": "3.x",
-      "react-swipeable": "4.1.0"
+    "react": "15.x",
+    "react-dom": "15.x",
+    "babel-loader": "7.x",
+    "babel-core": "6.x",
+    "style-loader": "0.18.x",
+    "css-loader": "0.28.x",
+    "babel-preset-es2015": "6.x",
+    "babel-preset-react": "6.x",
+    "webpack": "2.x",
+    "webpack-dev-server": "2.x",
+    "bootstrap": "3.x",
+    "react-swipeable": "4.1.0",
+    "jquery": "^3.2.1"
   },
   "keywords": [
     "shoes",
@@ -27,5 +29,8 @@
     "wedding shoes"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-dev-server": "^2.9.4"
+  }
 }

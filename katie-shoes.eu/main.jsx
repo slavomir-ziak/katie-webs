@@ -14,28 +14,31 @@ const GalleryPicture = function ({imgSrc, caption, altText}) {
     </div>;
 }
 
-const page = 4;
+const DEFAULT_PAGE_SIZE = 4;
 
 class Gallery extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {index: 0};
+		this.state = {index: 0, page: DEFAULT_PAGE_SIZE};
+		this.onResize();
 	}
 	next() {
-		if (this.state.index + page < this.props.pictures.length) {
-			this.setState({index: this.state.index + page});	
+		if (this.state.index + this.state.page < this.props.pictures.length) {
+			this.setState({index: this.state.index + this.state.page});	
 		}
 	}
 	prev() {
-		if (this.state.index - page >= 0) {
-			this.setState({index: this.state.index - page})
+		if (this.state.index - this.state.page >= 0) {
+			this.setState({index: this.state.index - this.state.page})
+		} else {
+			this.setState({index: 0});
 		}
 	}
 	prevDisabled() {
 		return this.state.index <= 0;
 	}
 	nextDisabled() {
-		return this.state.index + page >= this.props.pictures.length;
+		return this.state.index + this.state.page >= this.props.pictures.length;
 	}
 	openCarousel(index) {
 		this.setState({carousel: true, carouselOpenedAtIndex: index})
@@ -51,12 +54,30 @@ class Gallery extends React.Component {
 			$.getJSON(`/data/localisation-${this.extractLang(newProps.language)}.json`, '', (json) => this.setState({localisation: json}));			
 		}
 	}
+	onResize() {
+		if (window.innerWidth > 767) {
+			this.setState({page: 4});
+		}
+		if (window.innerWidth <= 767) {
+			this.setState({page: 2});
+		}
+		if (window.innerWidth <= 480) {
+			this.setState({page: 1});
+		}
+	}
+	componentDidMount() {
+		this.onResize();
+  		window.addEventListener("resize", (e) => this.onResize());
+	}
+	componentWillUnmount() {
+  		window.removeEventListener("resize", (e) => this.onResize());
+	}
 	render() {
 
 		return <div className="container-fluid">
 			<div className="row gallery-row">{
 				this.props.pictures
-					.slice(this.state.index, this.state.index + page)
+					.slice(this.state.index, this.state.index + this.state.page)
 					.map((pic, index) => 
 						<div className="col-xs-6 col-sm-3 ks-gallery-col-12" onClick={() => this.openCarousel(this.state.index + index)} key={pic.image}>
 							<GalleryPicture 
@@ -67,12 +88,12 @@ class Gallery extends React.Component {
 						</div>
 					)
 			}</div>
-			<button className="btn btn-default gallery-button" onClick={() => this.prev()} disabled={this.prevDisabled()}>
+			<a className="btn btn-large btn-primary gallery-button" onClick={() => this.prev()} disabled={this.prevDisabled()}>
 				{this.state.localisation ? this.state.localisation['prev'] : '&lt;'}
-			</button>
-			<button className="btn btn-default gallery-button" onClick={() => this.next()} disabled={this.nextDisabled()}>
+			</a>
+			<a className="btn btn-large btn-primary gallery-button" onClick={() => this.next()} disabled={this.nextDisabled()}>
 				{this.state.localisation ? this.state.localisation['next'] : '&gt;'}
-			</button>{
+			</a>{
 			this.state.carousel &&
 				<Carousel 
 					pictures={this.props.pictures} 
@@ -93,20 +114,20 @@ class Carousel extends React.Component {
 		this.LEFT_ARROW_CODE = 37;
 	}
 	next() {
-		if (this.state.index + page < this.props.pictures.length) {
-			this.setState({index: this.state.index + page});	
+		if (this.state.index + 1 < this.props.pictures.length) {
+			this.setState({index: this.state.index + 1});	
 		}
 	}
 	prev() {
-		if (this.state.index - page >= 0) {
-			this.setState({index: this.state.index - page})
+		if (this.state.index - 1 >= 0) {
+			this.setState({index: this.state.index - 1})
 		}
 	}
 	prevDisabled() {
 		return this.state.index <= 0;
 	}
 	nextDisabled() {
-		return this.state.index + page >= this.props.pictures.length;
+		return this.state.index + 1 >= this.props.pictures.length;
 	}
 	close() {
 		this.props.closeCarousel();
@@ -114,8 +135,8 @@ class Carousel extends React.Component {
 	onKeyDown(e) {
 		switch (e.keyCode) {
 			case this.ESCAPE_CODE: this.close(); break;
-			case this.RIGHT_ARROW_CODE: this.prev(); break;
-			case this.LEFT_ARROW_CODE: this.next(); break;
+			case this.RIGHT_ARROW_CODE: this.next(); break;
+			case this.LEFT_ARROW_CODE: this.prev(); break;
 		} 
 	}
 	componentDidMount() {

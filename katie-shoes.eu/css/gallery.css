@@ -38,6 +38,18 @@
 	}
 }
 
+@media (max-width: 1199px) {
+	.gallery-row {
+    	height: 210px;
+	}
+}
+
+@media (max-width: 991px) {
+	.gallery-row {
+    	height: 165px;
+	}
+}
+
 .ks-carousel {
 	position: fixed;
 	top: 0;

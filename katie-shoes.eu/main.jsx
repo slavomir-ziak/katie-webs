@@ -20,7 +20,6 @@ class Gallery extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {index: 0, page: DEFAULT_PAGE_SIZE};
-		this.onResize();
 	}
 	next() {
 		if (this.state.index + this.state.page < this.props.pictures.length) {
@@ -51,7 +50,7 @@ class Gallery extends React.Component {
 	}
 	componentWillReceiveProps(newProps){
 		if (this.props.language !== newProps.language) {
-			$.getJSON(`/data/localisation-${this.extractLang(newProps.language)}.json`, '', (json) => this.setState({localisation: json}));			
+			$.getJSON(`data/localisation-${this.extractLang(newProps.language)}.json`, '', (json) => this.setState({localisation: json}));			
 		}
 	}
 	onResize() {
@@ -81,7 +80,7 @@ class Gallery extends React.Component {
 					.map((pic, index) => 
 						<div className="col-xs-6 col-sm-3 ks-gallery-col-12" onClick={() => this.openCarousel(this.state.index + index)} key={pic.image}>
 							<GalleryPicture 
-								imgSrc={pic.image}
+								imgSrc={'images/portfolio/small/' + pic.image}
 								caption={this.state.localisation ? this.state.localisation[pic.localisation] : null}
 								altText={pic.alt}
 							/>
@@ -89,10 +88,10 @@ class Gallery extends React.Component {
 					)
 			}</div>
 			<a className="btn btn-large btn-primary gallery-button" onClick={() => this.prev()} disabled={this.prevDisabled()}>
-				{this.state.localisation ? this.state.localisation['prev'] : '&lt;'}
+				{this.state.localisation ? this.state.localisation['prev'] : 'prev'}
 			</a>
 			<a className="btn btn-large btn-primary gallery-button" onClick={() => this.next()} disabled={this.nextDisabled()}>
-				{this.state.localisation ? this.state.localisation['next'] : '&gt;'}
+				{this.state.localisation ? this.state.localisation['next'] : 'next'}
 			</a>{
 			this.state.carousel &&
 				<Carousel 
@@ -155,7 +154,7 @@ class Carousel extends React.Component {
 	        trackMouse
 	        preventDefaultTouchmoveEvent >
 		        
-		        <img src={this.props.pictures[this.state.index].image} className="ks-image"></img>
+		        <img src={'images/portfolio/big/' + this.props.pictures[this.state.index].image} className="ks-image"></img>
 
 				<div className="ks-image-carousel"></div>
 				<div className="ks-test__prev" disabled={this.prevDisabled()} onClick={() => this.prev()}></div>

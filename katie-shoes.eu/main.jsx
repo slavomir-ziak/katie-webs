@@ -4,17 +4,21 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as $ from 'jquery';
 import Swipeable from 'react-swipeable'
-import ImageLoader from 'react-imageloader';
+import ImageLoader from 'react-load-image';
 
 const portfolio = require('./data/portfolio.json');
 
+function GalleryPreloader() {
+    return <img src="images/spinner.gif" />;
+}
 const GalleryPicture = function ({imgSrc, caption, altText}) {
 	return <div className="gallery-image" >
-        <ImageLoader
-            preloader={preloader}
-            src={imgSrc} alt={altText} >
-            Image load failed!
-        </ImageLoader>
+		<ImageLoader src={imgSrc}  style={{backgroundColor: 'black'}}>
+	    	<img alt={altText}/>
+	    	<div>Error!</div>
+	    	<GalleryPreloader />
+	  	</ImageLoader>
+
         <span className="gallery-image-caption"> {caption || altText} </span>
     </div>;
 };
@@ -108,6 +112,12 @@ class Gallery extends React.Component {
 	}
 }
 
+
+function CarouselPreloader() {
+    return <img className="ks-spinner-full" src="images/spinner.gif" />;
+}
+
+
 class Carousel extends React.Component {
 
 	constructor(props) {
@@ -158,12 +168,12 @@ class Carousel extends React.Component {
 				className="ks-container"
 				trackMouse
 				preventDefaultTouchmoveEvent >
-					<ImageLoader
-						preloader={preloader}
-                        src={'images/portfolio/big/' + this.props.pictures[this.state.index].image}
-						className="ks-image" >
-						Image load failed!
-					</ImageLoader>
+
+					<ImageLoader src={'images/portfolio/big/' + this.props.pictures[this.state.index].image} >
+				    	<img className="ks-image" />
+				    	<div>Error!</div>
+				    	<CarouselPreloader />
+				  	</ImageLoader>
 					<div className="ks-image-carousel"/>
 					<div className="ks-test__prev" disabled={this.prevDisabled()} onClick={() => this.prev()}/>
 					<div className="ks-test__next" disabled={this.nextDisabled()} onClick={() => this.next()}/>
@@ -174,10 +184,6 @@ class Carousel extends React.Component {
 	}
 }
 
-
-function preloader() {
-    return <img src="images/spinner.gif" className="ks-spinner"/>;
-}
 
 function renderGallery(language) {
 	ReactDOM.render(

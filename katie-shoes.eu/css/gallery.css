@@ -1,7 +1,21 @@
 
-.ks-spinner {
+.ks-spinner-full {
     width: 64px;
     height: 64px;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.ks-spinner {
+	height: 205px;
+	width: 234;
+	margin: 13px;
 }
 
 .gallery-image {
@@ -10,16 +24,16 @@
 	cursor: pointer;
 }
 
-.gallery-image .loaded img {
+.gallery-image .imageloader-loaded img {
 	margin: 5%;
 	width: 90%;
 	display: block;
 }
 
-.gallery-image .loading img {
-	margin: 5%;
-	width: 90%;
-	height: 100%;
+.gallery-image .imageloader-loading img {
+	height: 205px;
+	width: 234px;
+	margin: 13px;
 }
 
 .gallery-image-caption {
@@ -155,7 +169,7 @@
 	opacity: 1;
 }
 
-.ks-image img {
+.ks-image {
 	max-height: 100%;
 	max-width: 100%;
 	width: auto;

@@ -17,7 +17,6 @@
     "jquery": "^3.2.1",
     "react": "15.x",
     "react-dom": "15.x",
-    "react-imageloader ": "2.1.0",
     "react-load-image": "^0.1.6",
     "react-swipeable": "4.1.0",
     "style-loader": "0.18.x",

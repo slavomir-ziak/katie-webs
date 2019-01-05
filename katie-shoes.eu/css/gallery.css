@@ -1,4 +1,7 @@
-.gallery {
+
+.ks-spinner {
+    width: 64px;
+    height: 64px;
 }
 
 .gallery-image {
@@ -7,10 +10,16 @@
 	cursor: pointer;
 }
 
-.gallery-image img {
+.gallery-image .loaded img {
 	margin: 5%;
 	width: 90%;
 	display: block;
+}
+
+.gallery-image .loading img {
+	margin: 5%;
+	width: 90%;
+	height: 100%;
 }
 
 .gallery-image-caption {
@@ -132,10 +141,21 @@
   	transform: rotate(-45deg);
 }
 
+.ks-test__close-upper {
+	position: absolute;
+	top: 3%;
+	left: 0;
+	right: 0;
+	opacity: 0.5;
+	cursor: pointer;
+	color: white;
+}
 
+.ks-test__close-upper:hover {
+	opacity: 1;
+}
 
-
-.ks-image {
+.ks-image img {
 	max-height: 100%;
 	max-width: 100%;
 	width: auto;

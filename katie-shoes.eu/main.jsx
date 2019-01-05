@@ -4,15 +4,20 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as $ from 'jquery';
 import Swipeable from 'react-swipeable'
+import ImageLoader from 'react-imageloader';
 
 const portfolio = require('./data/portfolio.json');
 
 const GalleryPicture = function ({imgSrc, caption, altText}) {
 	return <div className="gallery-image" >
-		<img src={imgSrc} alt={altText} />
+        <ImageLoader
+            preloader={preloader}
+            src={imgSrc} alt={altText} >
+            Image load failed!
+        </ImageLoader>
         <span className="gallery-image-caption"> {caption || altText} </span>
     </div>;
-}
+};
 
 const DEFAULT_PAGE_SIZE = 4;
 
@@ -146,24 +151,33 @@ class Carousel extends React.Component {
 	}
 	render() {
 		return <div className="ks-carousel">
-	      <Swipeable
-	        onSwipedRight={() => this.prev()}
-	        onSwipedLeft={() => this.next()}
-	        style={{touchAction: 'none' }}
-	        className="ks-container"
-	        trackMouse
-	        preventDefaultTouchmoveEvent >
-		        
-		        <img src={'images/portfolio/big/' + this.props.pictures[this.state.index].image} className="ks-image"></img>
-
-				<div className="ks-image-carousel"></div>
-				<div className="ks-test__prev" disabled={this.prevDisabled()} onClick={() => this.prev()}></div>
-				<div className="ks-test__next" disabled={this.nextDisabled()} onClick={() => this.next()}></div>
-				<div className="ks-test__close" onClick={() => this.close()}></div>
-	      </Swipeable>
+			<Swipeable
+				onSwipedRight={() => this.prev()}
+				onSwipedLeft={() => this.next()}
+				style={{touchAction: 'none' }}
+				className="ks-container"
+				trackMouse
+				preventDefaultTouchmoveEvent >
+					<ImageLoader
+						preloader={preloader}
+                        src={'images/portfolio/big/' + this.props.pictures[this.state.index].image}
+						className="ks-image" >
+						Image load failed!
+					</ImageLoader>
+					<div className="ks-image-carousel"/>
+					<div className="ks-test__prev" disabled={this.prevDisabled()} onClick={() => this.prev()}/>
+					<div className="ks-test__next" disabled={this.nextDisabled()} onClick={() => this.next()}/>
+					<div className="ks-test__close" onClick={() => this.close()}/>
+					<div className="ks-test__close-upper" onClick={() => this.close()}>Close</div>
+			</Swipeable>
 		</div>;
 	}
-};
+}
+
+
+function preloader() {
+    return <img src="images/spinner.gif" className="ks-spinner"/>;
+}
 
 function renderGallery(language) {
 	ReactDOM.render(
